@@ -13,7 +13,13 @@ Ces captures techniques illustrent une direction graphique possible. Le rendu
 HD n'est pas imposé : la base publique reste conçue pour fonctionner avec les
 graphismes d'origine et permettre à chacun de choisir sa propre direction.
 
+![Environnement DAoC HD sous Godot](docs/screenshots/hd_environment.webp)
 
+![Exploration d'un vaste paysage avec l'interface DAoC](docs/screenshots/hd_open_world.webp)
+
+![Village, végétation et interface jouable](docs/screenshots/hd_village.webp)
+
+![Scène de jeu à Thidranki](docs/screenshots/hd_thidranki.webp)
 
 ## Ce que permet la base
 
