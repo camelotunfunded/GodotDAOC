@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cakub0hispgk3"]
+
+[ext_resource type="Script" path="res://ZoneViewer.gd" id="1_view"]
+
+[node name="ZoneViewer" type="Node3D" unique_id=1106323091]
+script = ExtResource("1_view")
+zones = PackedInt32Array(163)
+opendaoc_db_core_project_fallback_dir = ""
+texture_dirs = PackedStringArray()
+extra_texture_dirs = PackedStringArray()
+speedtree_enabled = false
+sky_glow_intensity = 0.8
+sky_glow_hdr_threshold = 2.0
+sky_ambient_from_sky_enabled = true
+sky_ambient_sky_contribution = 0.9
+sky_aerial_perspective_amount = 0.2
+sky_volumetric_fog_enabled = true
+sky_volumetric_fog_density = 8.499999999999995e-05
+sky_volumetric_fog_length_raw = 3750.0
+sky_sun_rays_energy = 2.0
+outward_rocks_enabled = false
+vegetation_render_mode = 0
+environment_offline_weather_intensity = 0.45
+distant_lod_colour_atlas_size = 1024
+build_legacy_lights = false
+legacy_lights_visible = false
+use_legacy_light_type_colors = false
+legacy_lights_show_markers = false
+npc_showcase_enabled = false
+player_zone = 51
+player_start_x = 33952.0
+player_start_y = 52899.0
+player_start_z = 3120.0
+player_run_speed_raw = 450.0
+player_visual_meshy_enabled = false
+player_visual_meshy_apply_on_ready = false
+player_visual_meshy_animation_state = "idle"
+p1_20a_opendaoc_ctrl_r_enabled = false
+p1_20a_opendaoc_host = "127.0.0.1"
+p1_20a_opendaoc_username = ""
+p1_20a_opendaoc_password = ""
+window_resolution = 7
+window_custom_width = 2560
+window_custom_height = 1440
+window_display_mode = 3
+build_dev_hud = false

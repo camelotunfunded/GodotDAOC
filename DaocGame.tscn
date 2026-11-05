@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dq6r5n1gamew0"]
+
+[ext_resource type="Script" uid="uid://fvp8xghcv30l" path="res://src/daoc/session/DaocGameWorld.gd" id="1_game"]
+
+[node name="DaocGame" type="Node3D" unique_id=2052495081]
+script = ExtResource("1_game")
+start_zone = 163
+local_server_player_level = 8
+player_run_speed_raw = 300.0
+player_torch_energy = 23.1
+player_torch_range_raw = 3400.0
+environment_time_hours = 0.0
+environment_minutes_per_day = 3.0
+environment_weather = "RAIN"
+environment_weather_intensity = 0.93
+ground_wet_soak_seconds = 64.0
+environment_log_state = true
+sky_glow_intensity = 0.25
+sky_glow_hdr_threshold = 1.95
+sky_ambient_sky_contribution = 0.6
+sky_ambient_energy_scale = 1.1
+ground_contact_ssao_intensity = 1.65
+sky_volumetric_fog_density = 4.999999999999997e-05
+sky_sun_rays_energy = 1.3
+sky_sun_warm_palette_enabled = true
+legacy_light_energy = 1.2
+legacy_lights_cast_shadows = true
+foliage_canopy_strength_raw = 200.0
+foliage_leaf_flutter_strength_raw = 41.0
+player_pbr_enabled = true
+player_pbr_normal_strength = 0.85
+player_pbr_roughness_amount = 0.3
+player_pbr_ao_amount = 0.2
+player_reflection_range_raw = 300.0
+player_reflection_intensity = 0.6
+player_reflection_height_raw = 190.0
+terrain_pbr_enabled = true
+terrain_pbr_ao_amount = 0.35
+terrain_macro_variation_enabled = true
+terrain_macro_variation_scale = 128.0
+terrain_macro_color_strength = 0.07
+terrain_macro_roughness_strength = 0.1
+terrain_bilinear_enabled = true
+terrain_bilinear_factor = 4
+world_pbr_map_size = 512
+world_pbr_normal_strength = 1.85
+world_pbr_roughness_amount = 1.0
+world_pbr_ao_amount = 0.95
+server_animation_log = true

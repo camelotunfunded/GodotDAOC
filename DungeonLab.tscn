@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://DungeonLab.gd" id="1_dungeonlab"]
+
+[node name="DungeonLab" type="Node3D"]
+script = ExtResource("1_dungeonlab")
+daoc_client_root = ""
+default_test_zone_id = 21
+default_test_zone_name = "Tomb of Mithra"
+source_region_hint = "DungeonLab configurable default: Tomb of Mithra / Tombe de Mithra (zone021)"
+previous_wrong_target_note = "P1-17C1 keeps Mithra as clean regression target while removing hardcoded builder assumptions"
+world_scale = 0.1
+placeholder_extent = 90.0
+try_runtime_nif_preview = true
+nif_preview_scale = 0.1
+link_runtime_textures = true
+texture_alpha_scissor = 0.5
+build_runtime_collisions = true
+collision_shape_mode = "trimesh"
+show_debug_footprints = false
+show_debug_axes = false
+show_debug_labels = false
+show_portal_debug = true
+show_light_debug = false
+enable_player_collision_test = true
+auto_player_spawn_from_dungeon = true
+player_spawn_instance_index = 0
+player_spawn_height_offset = 18.0
+player_floor_snap_height = 220.0
+player_floor_snap_depth = 620.0
+player_reset_if_below_y = -80.0
+player_freeze_until_floor_found = true
+player_input_layout = "azerty"
+player_allow_arrow_keys = true
+player_allow_qwerty_fallback = false
+player_start_in_ghost_mode = true
+player_ghost_move_speed = 36.0
+player_ghost_vertical_speed = 30.0
+player_hide_capsule_in_ghost = true
+player_camera_ghost_eye_height = 1.35
+player_camera_ghost_pitch_deg = 0.0
+player_camera_collision_back = 6.0
+player_camera_collision_height = 3.2
+auto_build_on_ready = true
+print_report_on_ready = true

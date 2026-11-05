@@ -1,0 +1,27 @@
+{
+  "schema_version": "p1_17e2c.1",
+  "checkpoint": "P1_17E2C_ABSTRACT_SERVER_DB",
+  "created_by": "GPT-5.5 Thinking",
+  "created_at": "2026-07-03",
+  "abstract_only": true,
+  "source_matrix": "daoc_dol_opendaoc_client_mechanics_comparison_P1_17E2B.csv",
+  "warning": "Ces .db sont des JSON abstraits pour Godot. Ils ne contiennent pas de vérité serveur runtime et ne doivent jamais appliquer X/Y/Z/Heading sans données DB officielles + validation de frame de coordonnées.",
+  "db_kind": "daoc_abstract_server_instruction_manifest",
+  "includes": [
+    "schema_p1_17e2c.db",
+    "server_profiles_abstract_p1_17e2c.db",
+    "server_table_slots_p1_17e2c.db",
+    "unified_client_instruction_contracts_p1_17e2c.db",
+    "dolsharp_abstract_instructions_p1_17e2c.db",
+    "opendaoc_abstract_instructions_p1_17e2c.db"
+  ],
+  "expected_record_count": 53,
+  "default_unified_db": "unified_client_instruction_contracts_p1_17e2c.db",
+  "default_profiles_db": "server_profiles_abstract_p1_17e2c.db",
+  "default_table_slots_db": "server_table_slots_p1_17e2c.db",
+  "next_real_data_dependencies": [
+    "OpenDAoC-Database/opendaoc-db-core",
+    "DOL dol.sqlite3.db or exported CSV tables",
+    "human/server logs for Barrows/Mithra runtime transitions"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "p1_17e2c.1",
+  "checkpoint": "P1_17E2C_ABSTRACT_SERVER_DB",
+  "created_by": "GPT-5.5 Thinking",
+  "created_at": "2026-07-03",
+  "abstract_only": true,
+  "source_matrix": "daoc_dol_opendaoc_client_mechanics_comparison_P1_17E2B.csv",
+  "warning": "Ces .db sont des JSON abstraits pour Godot. Ils ne contiennent pas de vérité serveur runtime et ne doivent jamais appliquer X/Y/Z/Heading sans données DB officielles + validation de frame de coordonnées.",
+  "db_kind": "daoc_abstract_server_profiles",
+  "server_profiles": [
+    {
+      "id": "dolsharp_1127_abstract",
+      "backend": "dol",
+      "display_name": "DOLSharp / Dawn of Light abstract",
+      "protocol_family": "dol_like_daoc_official_client",
+      "client_version_hint": "1127",
+      "packet_namespace_hint": "DOL.GS.PacketHandler.Client.v168",
+      "authority": "server",
+      "destination_provider": "DaocDolDestinationAdapter",
+      "instruction_db": "dolsharp_abstract_instructions_p1_17e2c.db",
+      "data_tables_expected": [
+        "Teleport",
+        "ZonePoint",
+        "Region",
+        "StartupLocation",
+        "InventoryItem",
+        "Spell",
+        "Style",
+        "NpcTemplate",
+        "Mob",
+        "Door",
+        "Keep",
+        "Quest"
+      ],
+      "runtime_enabled": false
+    },
+    {
+      "id": "opendaoc_abstract",
+      "backend": "opendaoc",
+      "display_name": "OpenDAoC-Core abstract",
+      "protocol_family": "dol_like_daoc_official_client",
+      "client_version_hint": "v168 handlers / 1.65 data target",
+      "packet_namespace_hint": "DOL.GS.PacketHandler.Client.v168",
+      "authority": "server",
+      "destination_provider": "DaocOpenDaocDestinationAdapter",
+      "instruction_db": "opendaoc_abstract_instructions_p1_17e2c.db",
+      "data_tables_expected": [
+        "DbZonePoint",
+        "Region",
+        "StartupLocation",
+        "JumpPoint",
+        "Door",
+        "Mob",
+        "NpcTemplate",
+        "Spell",
+        "Style",
+        "Inventory",
+        "ItemTemplate",
+        "Quest",
+        "Keep",
+        "Relic"
+      ],
+      "runtime_enabled": false
+    }
+  ],
+  "profile_rules": [
+    "Profiles are not connection configs. They are abstract capability containers.",
+    "No host, port, password, account, token, or player DB value belongs here."
+  ]
+}

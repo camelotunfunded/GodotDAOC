@@ -1,0 +1,141 @@
+{
+  "schema_version": "p1_17e2c.1",
+  "checkpoint": "P1_17E2C_ABSTRACT_SERVER_DB",
+  "created_by": "GPT-5.5 Thinking",
+  "created_at": "2026-07-03",
+  "abstract_only": true,
+  "source_matrix": "daoc_dol_opendaoc_client_mechanics_comparison_P1_17E2B.csv",
+  "warning": "Ces .db sont des JSON abstraits pour Godot. Ils ne contiennent pas de vérité serveur runtime et ne doivent jamais appliquer X/Y/Z/Heading sans données DB officielles + validation de frame de coordonnées.",
+  "db_kind": "daoc_server_table_slots",
+  "table_slots": [
+    {
+      "id": "world_destination_zonepoint",
+      "contract": "WorldDestination",
+      "dol_table": "ZonePoint",
+      "opendaoc_table": "DbZonePoint / ZonePoint SQL",
+      "required_columns": [
+        "Id",
+        "SourceRegion",
+        "SourceX",
+        "SourceY",
+        "SourceZ",
+        "TargetRegion",
+        "TargetX",
+        "TargetY",
+        "TargetZ",
+        "TargetHeading",
+        "Realm",
+        "ClassType"
+      ],
+      "runtime_status": "pending_real_db"
+    },
+    {
+      "id": "world_destination_teleport",
+      "contract": "WorldDestination",
+      "dol_table": "Teleport",
+      "opendaoc_table": "unknown_or_scripted_teleport",
+      "required_columns": [
+        "Id/TeleportID",
+        "RegionID/TargetRegion",
+        "X/TargetX",
+        "Y/TargetY",
+        "Z/TargetZ",
+        "Heading/TargetHeading",
+        "Realm",
+        "Type/ClassType"
+      ],
+      "runtime_status": "pending_real_db"
+    },
+    {
+      "id": "region_zone_mapping",
+      "contract": "RegionZoneMapping",
+      "dol_table": "Region/Zone runtime",
+      "opendaoc_table": "Region / Zone SQL",
+      "required_columns": [
+        "region_id",
+        "client_zone_id",
+        "description",
+        "x_offset",
+        "y_offset",
+        "expansion",
+        "realm"
+      ],
+      "runtime_status": "pending_real_db"
+    },
+    {
+      "id": "enter_world_bootstrap",
+      "contract": "EnterWorldBootstrap",
+      "dol_table": "DOLCharacters/Inventory/Skills/Effects/Quest",
+      "opendaoc_table": "DbCoreCharacter/DbInventoryItem/Spell/Quest/etc",
+      "required_columns": [
+        "character_id",
+        "region",
+        "x",
+        "y",
+        "z",
+        "heading",
+        "inventory",
+        "skills",
+        "stats",
+        "effects",
+        "quests"
+      ],
+      "runtime_status": "pending_real_db"
+    },
+    {
+      "id": "combat_event_model",
+      "contract": "CombatEvent",
+      "dol_table": "server_runtime_AttackData",
+      "opendaoc_table": "AttackData/AttackComponent/AttackAction",
+      "required_columns": [
+        "attacker_id",
+        "target_id",
+        "attack_result",
+        "damage",
+        "damage_type",
+        "style_id",
+        "animation_id",
+        "critical",
+        "block_parry_evade"
+      ],
+      "runtime_status": "abstract_only"
+    },
+    {
+      "id": "spell_event_model",
+      "contract": "SpellEvent",
+      "dol_table": "Spell/SpellLine/SpellHandler runtime",
+      "opendaoc_table": "Spell/SpellLine/SpellHandler/CastingComponent",
+      "required_columns": [
+        "caster_id",
+        "target_id",
+        "spell_id",
+        "spell_type",
+        "cast_time",
+        "interrupt_state",
+        "effect_id",
+        "damage_or_heal",
+        "resist_result"
+      ],
+      "runtime_status": "abstract_only"
+    },
+    {
+      "id": "entity_replication_model",
+      "contract": "EntityReplication",
+      "dol_table": "GameObject/GameLiving/GameNPC/GamePlayer runtime",
+      "opendaoc_table": "GameObject/GameLiving/GameNPC/GamePlayer runtime",
+      "required_columns": [
+        "object_id",
+        "realm",
+        "model",
+        "position",
+        "heading",
+        "speed",
+        "health",
+        "name",
+        "guild",
+        "visibility_state"
+      ],
+      "runtime_status": "abstract_only"
+    }
+  ]
+}

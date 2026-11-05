@@ -1,0 +1,3657 @@
+{
+  "schema_version": 1,
+  "generated_offline": true,
+  "target_player_level": 50,
+  "method": "CharacterClass + classxspecialization + specxability; reproduit SkillBase.GetSpecializationCareer, CareerSpecialization.GetSpecLevelForLiving et Specialization.GetAbilitiesForLiving",
+  "armor_chains": {
+    "Albion": {
+      "0": "none",
+      "1": "cloth",
+      "2": "leather",
+      "3": "studded",
+      "4": "chain",
+      "5": "plate"
+    },
+    "Midgard": {
+      "0": "none",
+      "1": "cloth",
+      "2": "leather",
+      "3": "studded",
+      "4": "chain"
+    },
+    "Hibernia": {
+      "0": "none",
+      "1": "cloth",
+      "2": "leather",
+      "3": "reinforced",
+      "4": "scale"
+    }
+  },
+  "sources": {
+    "CharacterClass": {
+      "path": "E:\\00_Mod HD daoc test\\DOLSharp-master\\Debug\\dol.sqlite3.db",
+      "sha256": "70F85343F53C55071D1B252DF090DEBBC2E91BF85A6E5E98824B5AD1915D5243"
+    },
+    "classxspecialization": {
+      "path": "E:\\00_Mod HD daoc test\\0_ version GODOT\\tools-mini projets\\server_dumps\\opendaoc\\opendaoc-db-core\\classxspecialization.sql",
+      "sha256": "173476FD68E06D065D1F98DA9C76FE4858FC63480C513B0338C1F3FDA18FDABA"
+    },
+    "specxability": {
+      "path": "E:\\00_Mod HD daoc test\\0_ version GODOT\\tools-mini projets\\server_dumps\\opendaoc\\opendaoc-db-core\\specxability.sql",
+      "sha256": "BEB91B3F6ACD32D3A45CE0C4BB9203C6E822B736C76F431BF16CA98FA964F535"
+    },
+    "race": {
+      "path": "E:\\00_Mod HD daoc test\\0_ version GODOT\\tools-mini projets\\server_dumps\\opendaoc\\opendaoc-db-core\\race.sql",
+      "sha256": "C5733BE7020B5AA20F5D4A23A36A4579C509DF0AA304E2BBF3D5039E9434A8DD"
+    }
+  },
+  "counts": {
+    "classes": 62,
+    "races": 41,
+    "class_spec_rows": 395,
+    "armor_ability_rows": 44
+  },
+  "classes": [
+    {
+      "id": 1,
+      "base_class_id": 14,
+      "class_type": 1,
+      "name": "Paladin",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 5,
+      "armor_type": "plate",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "FighterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 265
+            },
+            {
+              "career_spec": "PaladinCareer",
+              "spec_level": 1,
+              "specxability_row_id": 280
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "AlbArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "PaladinCareer",
+              "spec_level": 10,
+              "specxability_row_id": 412
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "AlbArmor",
+          "ability_level": 5,
+          "armor_type": "plate",
+          "sources": [
+            {
+              "career_spec": "PaladinCareer",
+              "spec_level": 20,
+              "specxability_row_id": 413
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Chants",
+        "CharacterStyleUserCareer",
+        "Crush",
+        "FighterCareer",
+        "PaladinCareer",
+        "Parry",
+        "Shields",
+        "Slash",
+        "Thrust",
+        "Two Handed"
+      ]
+    },
+    {
+      "id": 2,
+      "base_class_id": 14,
+      "class_type": 2,
+      "name": "Armsman",
+      "female_name": "Armswoman",
+      "eligible_races": [
+        {
+          "id": 19,
+          "name": "AlbionMinotaur"
+        },
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 5,
+      "armor_type": "plate",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "ArmsmanCareer",
+              "spec_level": 1,
+              "specxability_row_id": 273
+            },
+            {
+              "career_spec": "FighterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 265
+            }
+          ]
+        },
+        {
+          "player_level": 5,
+          "ability_key": "AlbArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "ArmsmanCareer",
+              "spec_level": 5,
+              "specxability_row_id": 408
+            }
+          ]
+        },
+        {
+          "player_level": 15,
+          "ability_key": "AlbArmor",
+          "ability_level": 5,
+          "armor_type": "plate",
+          "sources": [
+            {
+              "career_spec": "ArmsmanCareer",
+              "spec_level": 15,
+              "specxability_row_id": 409
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "ArmsmanCareer",
+        "CharacterStyleUserCareer",
+        "Crossbows",
+        "Crush",
+        "FighterCareer",
+        "Parry",
+        "Polearm",
+        "PureTankCareer",
+        "Shields",
+        "Slash",
+        "Thrust",
+        "Two Handed"
+      ]
+    },
+    {
+      "id": 3,
+      "base_class_id": 17,
+      "class_type": 1,
+      "name": "Scout",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 3,
+      "armor_type": "studded",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "RogueCareer",
+              "spec_level": 1,
+              "specxability_row_id": 125
+            },
+            {
+              "career_spec": "ScoutCareer",
+              "spec_level": 1,
+              "specxability_row_id": 143
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "ScoutCareer",
+              "spec_level": 10,
+              "specxability_row_id": 406
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterStyleUserCareer",
+        "Longbows",
+        "RogueCareer",
+        "ScoutCareer",
+        "Shields",
+        "Slash",
+        "Stealth",
+        "Thrust"
+      ]
+    },
+    {
+      "id": 4,
+      "base_class_id": 17,
+      "class_type": 1,
+      "name": "Minstrel",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "MinstrelCareer",
+              "spec_level": 1,
+              "specxability_row_id": 141
+            },
+            {
+              "career_spec": "RogueCareer",
+              "spec_level": 1,
+              "specxability_row_id": 125
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "MinstrelCareer",
+              "spec_level": 10,
+              "specxability_row_id": 403
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "AlbArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "MinstrelCareer",
+              "spec_level": 20,
+              "specxability_row_id": 404
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterStyleUserCareer",
+        "Instruments",
+        "MinstrelCareer",
+        "RogueCareer",
+        "Slash",
+        "Stealth",
+        "Thrust"
+      ]
+    },
+    {
+      "id": 5,
+      "base_class_id": 15,
+      "class_type": 0,
+      "name": "Theurgist",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "CharacterQuickcastUserCareer",
+        "Cold Magic",
+        "Earth Magic",
+        "Wind Magic"
+      ]
+    },
+    {
+      "id": 6,
+      "base_class_id": 16,
+      "class_type": 1,
+      "name": "Cleric",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "AcolyteCareer",
+              "spec_level": 1,
+              "specxability_row_id": 108
+            },
+            {
+              "career_spec": "ClericCareer",
+              "spec_level": 1,
+              "specxability_row_id": 112
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "ClericCareer",
+              "spec_level": 10,
+              "specxability_row_id": 400
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "AlbArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "ClericCareer",
+              "spec_level": 20,
+              "specxability_row_id": 401
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AcolyteCareer",
+        "ClericCareer",
+        "Enhancement",
+        "Rejuvenation",
+        "Smite"
+      ]
+    },
+    {
+      "id": 7,
+      "base_class_id": 15,
+      "class_type": 0,
+      "name": "Wizard",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "CharacterQuickcastUserCareer",
+        "Cold Magic",
+        "Earth Magic",
+        "Fire Magic"
+      ]
+    },
+    {
+      "id": 8,
+      "base_class_id": 18,
+      "class_type": 0,
+      "name": "Sorcerer",
+      "female_name": "Sorceress",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "Body Magic",
+        "CharacterQuickcastUserCareer",
+        "Matter Magic",
+        "Mind Magic"
+      ]
+    },
+    {
+      "id": 9,
+      "base_class_id": 17,
+      "class_type": 2,
+      "name": "Infiltrator",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "RogueCareer",
+              "spec_level": 1,
+              "specxability_row_id": 125
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AssassinCareer",
+        "CharacterStyleUserCareer",
+        "Critical Strike",
+        "Dual Wield",
+        "Envenom",
+        "InfiltratorCareer",
+        "RogueCareer",
+        "Slash",
+        "Stealth",
+        "Thrust"
+      ]
+    },
+    {
+      "id": 10,
+      "base_class_id": 16,
+      "class_type": 1,
+      "name": "Friar",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "AcolyteCareer",
+              "spec_level": 1,
+              "specxability_row_id": 108
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AcolyteCareer",
+        "CharacterStyleUserCareer",
+        "Enhancement",
+        "FriarCareer",
+        "Parry",
+        "Rejuvenation",
+        "Staff"
+      ]
+    },
+    {
+      "id": 11,
+      "base_class_id": 14,
+      "class_type": 2,
+      "name": "Mercenary",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 19,
+          "name": "AlbionMinotaur"
+        },
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "FighterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 265
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "AlbArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "MercenaryCareer",
+              "spec_level": 10,
+              "specxability_row_id": 416
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterStyleUserCareer",
+        "Crush",
+        "Dual Wield",
+        "FighterCareer",
+        "LightTankCareer",
+        "MercenaryCareer",
+        "Parry",
+        "Shields",
+        "Slash",
+        "Thrust"
+      ]
+    },
+    {
+      "id": 12,
+      "base_class_id": 20,
+      "class_type": 0,
+      "name": "Necromancer",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "Death Servant",
+        "Deathsight",
+        "Painworking"
+      ]
+    },
+    {
+      "id": 13,
+      "base_class_id": 18,
+      "class_type": 0,
+      "name": "Cabalist",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "Body Magic",
+        "CharacterQuickcastUserCareer",
+        "Matter Magic",
+        "Spirit Magic"
+      ]
+    },
+    {
+      "id": 14,
+      "base_class_id": 14,
+      "class_type": 2,
+      "name": "Fighter",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 19,
+          "name": "AlbionMinotaur"
+        },
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 3,
+      "armor_type": "studded",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "FighterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 265
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Crush",
+        "FighterCareer",
+        "Slash",
+        "Thrust"
+      ]
+    },
+    {
+      "id": 15,
+      "base_class_id": 15,
+      "class_type": 0,
+      "name": "Elementalist",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "Cold Magic",
+        "Earth Magic"
+      ]
+    },
+    {
+      "id": 16,
+      "base_class_id": 16,
+      "class_type": 1,
+      "name": "Acolyte",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 19,
+          "name": "AlbionMinotaur"
+        },
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "AcolyteCareer",
+              "spec_level": 1,
+              "specxability_row_id": 108
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AcolyteCareer",
+        "Enhancement",
+        "Rejuvenation"
+      ]
+    },
+    {
+      "id": 17,
+      "base_class_id": 17,
+      "class_type": 2,
+      "name": "Rogue",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 3,
+          "name": "Highlander"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "RogueCareer",
+              "spec_level": 1,
+              "specxability_row_id": 125
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "RogueCareer",
+        "Slash",
+        "Stealth",
+        "Thrust"
+      ]
+    },
+    {
+      "id": 18,
+      "base_class_id": 18,
+      "class_type": 0,
+      "name": "Mage",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 16,
+          "name": "HalfOgre"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "Body Magic",
+        "Matter Magic"
+      ]
+    },
+    {
+      "id": 19,
+      "base_class_id": 14,
+      "class_type": 1,
+      "name": "Reaver",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "FighterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 265
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "AlbArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "ReaverCareer",
+              "spec_level": 10,
+              "specxability_row_id": 419
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterStyleUserCareer",
+        "Crush",
+        "FighterCareer",
+        "Flexible",
+        "Parry",
+        "ReaverCareer",
+        "Shields",
+        "Slash",
+        "Soulrending",
+        "Thrust"
+      ]
+    },
+    {
+      "id": 20,
+      "base_class_id": 20,
+      "class_type": 0,
+      "name": "Disciple",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Albion",
+      "armor_ability": "AlbArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "AlbArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "AlbClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 152
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AlbClothCasterCareer",
+        "Death Servant",
+        "Deathsight",
+        "Painworking"
+      ]
+    },
+    {
+      "id": 21,
+      "base_class_id": 35,
+      "class_type": 1,
+      "name": "Thane",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 20,
+          "name": "MidgardMinotaur"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "VikingCareer",
+              "spec_level": 1,
+              "specxability_row_id": 29
+            }
+          ]
+        },
+        {
+          "player_level": 12,
+          "ability_key": "MidArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "ThaneCareer",
+              "spec_level": 12,
+              "specxability_row_id": 60
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Axe",
+        "CharacterStyleUserCareer",
+        "Hammer",
+        "Parry",
+        "Shields",
+        "Stormcalling",
+        "Sword",
+        "ThaneCareer",
+        "VikingCareer"
+      ]
+    },
+    {
+      "id": 22,
+      "base_class_id": 35,
+      "class_type": 2,
+      "name": "Warrior",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 20,
+          "name": "MidgardMinotaur"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "VikingCareer",
+              "spec_level": 1,
+              "specxability_row_id": 29
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "MidArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "WarriorCareer",
+              "spec_level": 10,
+              "specxability_row_id": 73
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Axe",
+        "CharacterStyleUserCareer",
+        "Hammer",
+        "Parry",
+        "PureTankCareer",
+        "Shields",
+        "Sword",
+        "Thrown Weapons",
+        "VikingCareer",
+        "WarriorCareer"
+      ]
+    },
+    {
+      "id": 23,
+      "base_class_id": 38,
+      "class_type": 2,
+      "name": "Shadowblade",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "MidgardRogueCareer",
+              "spec_level": 1,
+              "specxability_row_id": 167
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AssassinCareer",
+        "Axe",
+        "CharacterStyleUserCareer",
+        "Critical Strike",
+        "Envenom",
+        "Left Axe",
+        "MidgardRogueCareer",
+        "ShadowbladeCareer",
+        "Stealth",
+        "Sword"
+      ]
+    },
+    {
+      "id": 24,
+      "base_class_id": 35,
+      "class_type": 1,
+      "name": "Skald",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "VikingCareer",
+              "spec_level": 1,
+              "specxability_row_id": 29
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "MidArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "SkaldCareer",
+              "spec_level": 20,
+              "specxability_row_id": 57
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Axe",
+        "Battlesongs",
+        "CharacterStyleUserCareer",
+        "Hammer",
+        "Parry",
+        "SkaldCareer",
+        "Sword",
+        "VikingCareer"
+      ]
+    },
+    {
+      "id": 25,
+      "base_class_id": 38,
+      "class_type": 1,
+      "name": "Hunter",
+      "female_name": "Huntress",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 3,
+      "armor_type": "studded",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "MidgardRogueCareer",
+              "spec_level": 1,
+              "specxability_row_id": 167
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "HunterCareer",
+              "spec_level": 10,
+              "specxability_row_id": 211
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Beastcraft",
+        "CharacterStyleUserCareer",
+        "Composite Bow",
+        "HunterCareer",
+        "MidgardRogueCareer",
+        "Spear",
+        "Stealth",
+        "Sword"
+      ]
+    },
+    {
+      "id": 26,
+      "base_class_id": 37,
+      "class_type": 1,
+      "name": "Healer",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 1,
+              "specxability_row_id": 210
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 10,
+              "specxability_row_id": 213
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "MidArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 20,
+              "specxability_row_id": 221
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Augmentation",
+        "Mending",
+        "Pacification",
+        "SeerCareer"
+      ]
+    },
+    {
+      "id": 27,
+      "base_class_id": 36,
+      "class_type": 0,
+      "name": "Spiritmaster",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "MidClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 153
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterQuickcastUserCareer",
+        "Darkness",
+        "MidClothCasterCareer",
+        "Summoning",
+        "Suppression"
+      ]
+    },
+    {
+      "id": 28,
+      "base_class_id": 37,
+      "class_type": 1,
+      "name": "Shaman",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 1,
+              "specxability_row_id": 210
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 10,
+              "specxability_row_id": 213
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "MidArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 20,
+              "specxability_row_id": 221
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Augmentation",
+        "Mending",
+        "SeerCareer",
+        "Subterranean"
+      ]
+    },
+    {
+      "id": 29,
+      "base_class_id": 36,
+      "class_type": 0,
+      "name": "Runemaster",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "MidClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 153
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterQuickcastUserCareer",
+        "Darkness",
+        "MidClothCasterCareer",
+        "Runecarving",
+        "Suppression"
+      ]
+    },
+    {
+      "id": 30,
+      "base_class_id": 36,
+      "class_type": 0,
+      "name": "Bonedancer",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "MidClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 153
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Bone Army",
+        "CharacterQuickcastUserCareer",
+        "Darkness",
+        "MidClothCasterCareer",
+        "Suppression"
+      ]
+    },
+    {
+      "id": 31,
+      "base_class_id": 35,
+      "class_type": 2,
+      "name": "Berserker",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 20,
+          "name": "MidgardMinotaur"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 3,
+      "armor_type": "studded",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "VikingCareer",
+              "spec_level": 1,
+              "specxability_row_id": 29
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Axe",
+        "BerserkerCareer",
+        "CharacterStyleUserCareer",
+        "Hammer",
+        "Left Axe",
+        "LightTankCareer",
+        "Parry",
+        "Sword",
+        "VikingCareer"
+      ]
+    },
+    {
+      "id": 32,
+      "base_class_id": 35,
+      "class_type": 2,
+      "name": "Savage",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 3,
+      "armor_type": "studded",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "VikingCareer",
+              "spec_level": 1,
+              "specxability_row_id": 29
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Axe",
+        "CharacterStyleUserCareer",
+        "Hammer",
+        "Hand to Hand",
+        "LightTankCareer",
+        "Parry",
+        "SavageCareer",
+        "Savagery",
+        "Sword",
+        "VikingCareer"
+      ]
+    },
+    {
+      "id": 33,
+      "base_class_id": 16,
+      "class_type": 1,
+      "name": "Heretic",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 19,
+          "name": "AlbionMinotaur"
+        },
+        {
+          "id": 2,
+          "name": "Avalonian"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        },
+        {
+          "id": 4,
+          "name": "Saracen"
+        }
+      ],
+      "realm": "Unknown",
+      "armor_ability": "",
+      "armor_level": 0,
+      "armor_type": "unknown",
+      "armor_progression": [],
+      "career_specs": [
+        "CharacterStyleUserCareer",
+        "Crush",
+        "Enhancement",
+        "Flexible",
+        "HereticCareer",
+        "Rejuvenation",
+        "Shields"
+      ]
+    },
+    {
+      "id": 34,
+      "base_class_id": 35,
+      "class_type": 1,
+      "name": "Valkyrie",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Unknown",
+      "armor_ability": "",
+      "armor_level": 0,
+      "armor_type": "unknown",
+      "armor_progression": [],
+      "career_specs": [
+        "CharacterStyleUserCareer",
+        "Mending",
+        "Parry",
+        "Shields",
+        "Spear",
+        "Sword",
+        "ValkyrieCareer"
+      ]
+    },
+    {
+      "id": 35,
+      "base_class_id": 35,
+      "class_type": 2,
+      "name": "Viking",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 20,
+          "name": "MidgardMinotaur"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 3,
+      "armor_type": "studded",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "VikingCareer",
+              "spec_level": 1,
+              "specxability_row_id": 29
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Axe",
+        "Hammer",
+        "Parry",
+        "Sword",
+        "VikingCareer"
+      ]
+    },
+    {
+      "id": 36,
+      "base_class_id": 36,
+      "class_type": 0,
+      "name": "Mystic",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "MidClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 153
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Darkness",
+        "MidClothCasterCareer",
+        "Suppression"
+      ]
+    },
+    {
+      "id": 37,
+      "base_class_id": 37,
+      "class_type": 1,
+      "name": "Seer",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 6,
+          "name": "Troll"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 4,
+      "armor_type": "chain",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 1,
+              "specxability_row_id": 210
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "MidArmor",
+          "ability_level": 3,
+          "armor_type": "studded",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 10,
+              "specxability_row_id": 213
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "MidArmor",
+          "ability_level": 4,
+          "armor_type": "chain",
+          "sources": [
+            {
+              "career_spec": "SeerCareer",
+              "spec_level": 20,
+              "specxability_row_id": 221
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Augmentation",
+        "Mending",
+        "SeerCareer"
+      ]
+    },
+    {
+      "id": 38,
+      "base_class_id": 38,
+      "class_type": 2,
+      "name": "Rogue",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 7,
+          "name": "Dwarf"
+        },
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        },
+        {
+          "id": 14,
+          "name": "Valkyn"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "MidgardRogueCareer",
+              "spec_level": 1,
+              "specxability_row_id": 167
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "MidgardRogueCareer",
+        "Stealth",
+        "Sword"
+      ]
+    },
+    {
+      "id": 39,
+      "base_class_id": 51,
+      "class_type": 0,
+      "name": "Bainshee",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterQuickcastUserCareer",
+        "Ethereal Shriek",
+        "HibClothCasterCareer",
+        "Phantasmal Wail",
+        "Spectral Guard"
+      ]
+    },
+    {
+      "id": 40,
+      "base_class_id": 51,
+      "class_type": 0,
+      "name": "Eldritch",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterQuickcastUserCareer",
+        "HibClothCasterCareer",
+        "Light",
+        "Mana",
+        "Void"
+      ]
+    },
+    {
+      "id": 41,
+      "base_class_id": 51,
+      "class_type": 0,
+      "name": "Enchanter",
+      "female_name": "Enchantress",
+      "eligible_races": [
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterQuickcastUserCareer",
+        "Enchantments",
+        "HibClothCasterCareer",
+        "Light",
+        "Mana"
+      ]
+    },
+    {
+      "id": 42,
+      "base_class_id": 51,
+      "class_type": 0,
+      "name": "Mentalist",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "CharacterQuickcastUserCareer",
+        "HibClothCasterCareer",
+        "Light",
+        "Mana",
+        "Mentalism"
+      ]
+    },
+    {
+      "id": 43,
+      "base_class_id": 52,
+      "class_type": 2,
+      "name": "Blademaster",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 21,
+          "name": "HiberniaMinotaur"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 3,
+      "armor_type": "reinforced",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "GuardianCareer",
+              "spec_level": 1,
+              "specxability_row_id": 226
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "BlademasterCareer",
+        "Blades",
+        "Blunt",
+        "Celtic Dual",
+        "CharacterStyleUserCareer",
+        "GuardianCareer",
+        "LightTankCareer",
+        "Parry",
+        "Piercing",
+        "Shields"
+      ]
+    },
+    {
+      "id": 44,
+      "base_class_id": 52,
+      "class_type": 2,
+      "name": "Hero",
+      "female_name": "Heroine",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 21,
+          "name": "HiberniaMinotaur"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 4,
+      "armor_type": "scale",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "GuardianCareer",
+              "spec_level": 1,
+              "specxability_row_id": 226
+            },
+            {
+              "career_spec": "HeroCareer",
+              "spec_level": 1,
+              "specxability_row_id": 220
+            }
+          ]
+        },
+        {
+          "player_level": 15,
+          "ability_key": "HibArmor",
+          "ability_level": 4,
+          "armor_type": "scale",
+          "sources": [
+            {
+              "career_spec": "HeroCareer",
+              "spec_level": 15,
+              "specxability_row_id": 233
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Blades",
+        "Blunt",
+        "Celtic Spear",
+        "CharacterStyleUserCareer",
+        "GuardianCareer",
+        "HeroCareer",
+        "Large Weapons",
+        "Parry",
+        "Piercing",
+        "PureTankCareer",
+        "Shields"
+      ]
+    },
+    {
+      "id": 45,
+      "base_class_id": 52,
+      "class_type": 1,
+      "name": "Champion",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 21,
+          "name": "HiberniaMinotaur"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 4,
+      "armor_type": "scale",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "ChampionCareer",
+              "spec_level": 1,
+              "specxability_row_id": 246
+            },
+            {
+              "career_spec": "GuardianCareer",
+              "spec_level": 1,
+              "specxability_row_id": 226
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "HibArmor",
+          "ability_level": 4,
+          "armor_type": "scale",
+          "sources": [
+            {
+              "career_spec": "ChampionCareer",
+              "spec_level": 20,
+              "specxability_row_id": 218
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Blades",
+        "Blunt",
+        "ChampionCareer",
+        "CharacterStyleUserCareer",
+        "GuardianCareer",
+        "Large Weapons",
+        "Parry",
+        "Piercing",
+        "Shields",
+        "Valor"
+      ]
+    },
+    {
+      "id": 46,
+      "base_class_id": 53,
+      "class_type": 1,
+      "name": "Warden",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 21,
+          "name": "HiberniaMinotaur"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 4,
+      "armor_type": "scale",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "NaturalistCareer",
+              "spec_level": 1,
+              "specxability_row_id": 313
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "WardenCareer",
+              "spec_level": 10,
+              "specxability_row_id": 252
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "HibArmor",
+          "ability_level": 4,
+          "armor_type": "scale",
+          "sources": [
+            {
+              "career_spec": "WardenCareer",
+              "spec_level": 20,
+              "specxability_row_id": 317
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Blades",
+        "Blunt",
+        "CharacterStyleUserCareer",
+        "NaturalistCareer",
+        "Nurture",
+        "Parry",
+        "Regrowth",
+        "WardenCareer"
+      ]
+    },
+    {
+      "id": 47,
+      "base_class_id": 53,
+      "class_type": 1,
+      "name": "Druid",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 4,
+      "armor_type": "scale",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "NaturalistCareer",
+              "spec_level": 1,
+              "specxability_row_id": 313
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "DruidCareer",
+              "spec_level": 10,
+              "specxability_row_id": 263
+            }
+          ]
+        },
+        {
+          "player_level": 20,
+          "ability_key": "HibArmor",
+          "ability_level": 4,
+          "armor_type": "scale",
+          "sources": [
+            {
+              "career_spec": "DruidCareer",
+              "spec_level": 20,
+              "specxability_row_id": 314
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "DruidCareer",
+        "NaturalistCareer",
+        "Nature",
+        "Nurture",
+        "Regrowth"
+      ]
+    },
+    {
+      "id": 48,
+      "base_class_id": 53,
+      "class_type": 1,
+      "name": "Bard",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 3,
+      "armor_type": "reinforced",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "NaturalistCareer",
+              "spec_level": 1,
+              "specxability_row_id": 313
+            }
+          ]
+        },
+        {
+          "player_level": 15,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "BardCareer",
+              "spec_level": 15,
+              "specxability_row_id": 319
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "BardCareer",
+        "Blades",
+        "Blunt",
+        "CharacterStyleUserCareer",
+        "Music",
+        "NaturalistCareer",
+        "Nurture",
+        "Regrowth"
+      ]
+    },
+    {
+      "id": 49,
+      "base_class_id": 54,
+      "class_type": 1,
+      "name": "Nightshade",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "StalkerCareer",
+              "spec_level": 1,
+              "specxability_row_id": 177
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "AssassinCareer",
+        "Blades",
+        "Celtic Dual",
+        "CharacterStyleUserCareer",
+        "Critical Strike",
+        "Envenom",
+        "Nightshade Magic",
+        "NightshadeCareer",
+        "Piercing",
+        "StalkerCareer",
+        "Stealth"
+      ]
+    },
+    {
+      "id": 50,
+      "base_class_id": 54,
+      "class_type": 1,
+      "name": "Ranger",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 3,
+      "armor_type": "reinforced",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "StalkerCareer",
+              "spec_level": 1,
+              "specxability_row_id": 177
+            }
+          ]
+        },
+        {
+          "player_level": 10,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "RangerCareer",
+              "spec_level": 10,
+              "specxability_row_id": 186
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Blades",
+        "Celtic Dual",
+        "CharacterStyleUserCareer",
+        "Pathfinding",
+        "Piercing",
+        "RangerCareer",
+        "Recurve Bow",
+        "StalkerCareer",
+        "Stealth"
+      ]
+    },
+    {
+      "id": 51,
+      "base_class_id": 51,
+      "class_type": 0,
+      "name": "Magician",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "HibClothCasterCareer",
+        "Light",
+        "Mana"
+      ]
+    },
+    {
+      "id": 52,
+      "base_class_id": 52,
+      "class_type": 2,
+      "name": "Guardian",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 21,
+          "name": "HiberniaMinotaur"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 3,
+      "armor_type": "reinforced",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 3,
+          "armor_type": "reinforced",
+          "sources": [
+            {
+              "career_spec": "GuardianCareer",
+              "spec_level": 1,
+              "specxability_row_id": 226
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Blades",
+        "Blunt",
+        "GuardianCareer",
+        "Parry",
+        "Piercing"
+      ]
+    },
+    {
+      "id": 53,
+      "base_class_id": 53,
+      "class_type": 1,
+      "name": "Naturalist",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        },
+        {
+          "id": 21,
+          "name": "HiberniaMinotaur"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "NaturalistCareer",
+              "spec_level": 1,
+              "specxability_row_id": 313
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "NaturalistCareer",
+        "Nurture",
+        "Regrowth"
+      ]
+    },
+    {
+      "id": 54,
+      "base_class_id": 54,
+      "class_type": 2,
+      "name": "Stalker",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 11,
+          "name": "Elf"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 2,
+      "armor_type": "leather",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 2,
+          "armor_type": "leather",
+          "sources": [
+            {
+              "career_spec": "StalkerCareer",
+              "spec_level": 1,
+              "specxability_row_id": 177
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Blades",
+        "Piercing",
+        "StalkerCareer",
+        "Stealth"
+      ]
+    },
+    {
+      "id": 55,
+      "base_class_id": 57,
+      "class_type": 0,
+      "name": "Animist",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Arboreal Path",
+        "CharacterQuickcastUserCareer",
+        "Creeping Path",
+        "HibClothCasterCareer",
+        "Verdant Path"
+      ]
+    },
+    {
+      "id": 56,
+      "base_class_id": 57,
+      "class_type": 0,
+      "name": "Valewalker",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Arboreal Path",
+        "CharacterStyleUserCareer",
+        "HibClothCasterCareer",
+        "Parry",
+        "Scythe",
+        "ValewalkerCareer"
+      ]
+    },
+    {
+      "id": 57,
+      "base_class_id": 57,
+      "class_type": 0,
+      "name": "Forester",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 10,
+          "name": "Firbolg"
+        },
+        {
+          "id": 15,
+          "name": "Sylvan"
+        }
+      ],
+      "realm": "Hibernia",
+      "armor_ability": "HibArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "HibArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "HibClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 154
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Arboreal Path",
+        "HibClothCasterCareer"
+      ]
+    },
+    {
+      "id": 58,
+      "base_class_id": 54,
+      "class_type": 0,
+      "name": "Vampiir",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        },
+        {
+          "id": 18,
+          "name": "Shar"
+        }
+      ],
+      "realm": "Unknown",
+      "armor_ability": "",
+      "armor_level": 0,
+      "armor_type": "unknown",
+      "armor_progression": [],
+      "career_specs": [
+        "CharacterStyleUserCareer",
+        "Dementia",
+        "Piercing",
+        "Shadow Mastery",
+        "VampiirCareer",
+        "Vampiiric Embrace"
+      ]
+    },
+    {
+      "id": 59,
+      "base_class_id": 36,
+      "class_type": 0,
+      "name": "Warlock",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 17,
+          "name": "Frostalf"
+        },
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        }
+      ],
+      "realm": "Midgard",
+      "armor_ability": "MidArmor",
+      "armor_level": 1,
+      "armor_type": "cloth",
+      "armor_progression": [
+        {
+          "player_level": 1,
+          "ability_key": "MidArmor",
+          "ability_level": 1,
+          "armor_type": "cloth",
+          "sources": [
+            {
+              "career_spec": "MidClothCasterCareer",
+              "spec_level": 1,
+              "specxability_row_id": 153
+            }
+          ]
+        }
+      ],
+      "career_specs": [
+        "Cursing",
+        "Hexing",
+        "MidClothCasterCareer",
+        "Witchcraft"
+      ]
+    },
+    {
+      "id": 60,
+      "base_class_id": 14,
+      "class_type": 1,
+      "name": "Mauler",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 19,
+          "name": "AlbionMinotaur"
+        },
+        {
+          "id": 1,
+          "name": "Briton"
+        },
+        {
+          "id": 13,
+          "name": "Inconnu"
+        }
+      ],
+      "realm": "Unknown",
+      "armor_ability": "",
+      "armor_level": 0,
+      "armor_type": "unknown",
+      "armor_progression": [],
+      "career_specs": [
+        "Aura Manipulation",
+        "CharacterStyleUserCareer",
+        "Fist Wraps",
+        "Magnetism",
+        "Mauler Staff",
+        "MaulerAlbCareer",
+        "MaulerCareer",
+        "Power Strikes"
+      ]
+    },
+    {
+      "id": 61,
+      "base_class_id": 35,
+      "class_type": 1,
+      "name": "Mauler",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 8,
+          "name": "Kobold"
+        },
+        {
+          "id": 20,
+          "name": "MidgardMinotaur"
+        },
+        {
+          "id": 5,
+          "name": "Norseman"
+        }
+      ],
+      "realm": "Unknown",
+      "armor_ability": "",
+      "armor_level": 0,
+      "armor_type": "unknown",
+      "armor_progression": [],
+      "career_specs": [
+        "Aura Manipulation",
+        "CharacterStyleUserCareer",
+        "Fist Wraps",
+        "Magnetism",
+        "Mauler Staff",
+        "MaulerCareer",
+        "MaulerMidCareer",
+        "Power Strikes"
+      ]
+    },
+    {
+      "id": 62,
+      "base_class_id": 52,
+      "class_type": 1,
+      "name": "Mauler",
+      "female_name": "",
+      "eligible_races": [
+        {
+          "id": 9,
+          "name": "Celt"
+        },
+        {
+          "id": 21,
+          "name": "HiberniaMinotaur"
+        },
+        {
+          "id": 12,
+          "name": "Lurikeen"
+        }
+      ],
+      "realm": "Unknown",
+      "armor_ability": "",
+      "armor_level": 0,
+      "armor_type": "unknown",
+      "armor_progression": [],
+      "career_specs": [
+        "Aura Manipulation",
+        "CharacterStyleUserCareer",
+        "Fist Wraps",
+        "Magnetism",
+        "Mauler Staff",
+        "MaulerCareer",
+        "MaulerHibCareer",
+        "Power Strikes"
+      ]
+    }
+  ]
+}

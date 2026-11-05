@@ -1,0 +1,673 @@
+{
+	"checkpoint": "P1_26_RACE_INDEX",
+	"schema_version": 1,
+	"generated_utc": "2026-09-08 21:17:53",
+	"basis": "DUMP_RACE",
+	"source": {
+		"race": {
+			"ok": true,
+			"path": "race.sql",
+			"size": 4863,
+			"modified": 1783076988
+		}
+	},
+	"note": "Resistances RACIALES, donc de JOUEUR seulement. GameNPC.Race vaut zero et GetRaceResist rend zero d entree : un PNJ n a aucune resistance raciale, et ce n est pas une donnee manquante.",
+	"races": {
+		"Briton": {
+			"id": 1,
+			"name": "Briton",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 2,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 3,
+				"Spirit": 5,
+				"Thrust": 0
+			}
+		},
+		"Firbolg": {
+			"id": 10,
+			"name": "Firbolg",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 3,
+				"Energy": 0,
+				"Heat": 5,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 2,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Elf": {
+			"id": 11,
+			"name": "Elf",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 2,
+				"Spirit": 5,
+				"Thrust": 3
+			}
+		},
+		"Lurikeen": {
+			"id": 12,
+			"name": "Lurikeen",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 5,
+				"Energy": 5,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Inconnu": {
+			"id": 13,
+			"name": "Inconnu",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 2,
+				"Energy": 0,
+				"Heat": 5,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 5,
+				"Thrust": 3
+			}
+		},
+		"Valkyn": {
+			"id": 14,
+			"name": "Valkyn",
+			"resists": {
+				"Body": 5,
+				"Cold": 5,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 3,
+				"Spirit": 0,
+				"Thrust": 2
+			}
+		},
+		"Sylvan": {
+			"id": 15,
+			"name": "Sylvan",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 3,
+				"Energy": 5,
+				"Heat": 0,
+				"Matter": 5,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 2
+			}
+		},
+		"HalfOgre": {
+			"id": 16,
+			"name": "HalfOgre",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 5,
+				"Natural": 0,
+				"Slash": 3,
+				"Spirit": 0,
+				"Thrust": 2
+			}
+		},
+		"Frostalf": {
+			"id": 17,
+			"name": "Frostalf",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 2,
+				"Spirit": 5,
+				"Thrust": 3
+			}
+		},
+		"Shar": {
+			"id": 18,
+			"name": "Shar",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 5,
+				"Energy": 5,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"AlbionMinotaur": {
+			"id": 19,
+			"name": "AlbionMinotaur",
+			"resists": {
+				"Body": 0,
+				"Cold": 3,
+				"Crush": 4,
+				"Energy": 0,
+				"Heat": 3,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Avalonian": {
+			"id": 2,
+			"name": "Avalonian",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 2,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 3,
+				"Spirit": 5,
+				"Thrust": 0
+			}
+		},
+		"MidgardMinotaur": {
+			"id": 20,
+			"name": "MidgardMinotaur",
+			"resists": {
+				"Body": 0,
+				"Cold": 3,
+				"Crush": 4,
+				"Energy": 0,
+				"Heat": 3,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"HiberniaMinotaur": {
+			"id": 21,
+			"name": "HiberniaMinotaur",
+			"resists": {
+				"Body": 0,
+				"Cold": 3,
+				"Crush": 4,
+				"Energy": 0,
+				"Heat": 3,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Highlander": {
+			"id": 3,
+			"name": "Highlander",
+			"resists": {
+				"Body": 0,
+				"Cold": 5,
+				"Crush": 3,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 2,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Saracen": {
+			"id": 4,
+			"name": "Saracen",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 5,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 2,
+				"Spirit": 0,
+				"Thrust": 3
+			}
+		},
+		"Norseman": {
+			"id": 5,
+			"name": "Norseman",
+			"resists": {
+				"Body": 0,
+				"Cold": 5,
+				"Crush": 2,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 3,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Troll": {
+			"id": 6,
+			"name": "Troll",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 5,
+				"Natural": 0,
+				"Slash": 3,
+				"Spirit": 0,
+				"Thrust": 2
+			}
+		},
+		"Dwarf": {
+			"id": 7,
+			"name": "Dwarf",
+			"resists": {
+				"Body": 5,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 2,
+				"Spirit": 0,
+				"Thrust": 3
+			}
+		},
+		"Kobold": {
+			"id": 8,
+			"name": "Kobold",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 5,
+				"Energy": 5,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Celt": {
+			"id": 9,
+			"name": "Celt",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 2,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 3,
+				"Spirit": 5,
+				"Thrust": 0
+			}
+		},
+		"Ancients": {
+			"id": 50,
+			"name": "Ancients",
+			"resists": {
+				"Body": 25,
+				"Cold": 25,
+				"Crush": 25,
+				"Energy": 25,
+				"Heat": 25,
+				"Matter": 25,
+				"Natural": 25,
+				"Slash": 25,
+				"Spirit": 25,
+				"Thrust": 25
+			}
+		},
+		"Animal": {
+			"id": 2000,
+			"name": "Animal",
+			"resists": {
+				"Body": 0,
+				"Cold": -15,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 5,
+				"Spirit": 0,
+				"Thrust": -15
+			}
+		},
+		"Demon": {
+			"id": 2001,
+			"name": "Demon",
+			"resists": {
+				"Body": 5,
+				"Cold": 10,
+				"Crush": 15,
+				"Energy": 0,
+				"Heat": 15,
+				"Matter": 10,
+				"Natural": 5,
+				"Slash": 0,
+				"Spirit": -5,
+				"Thrust": -10
+			}
+		},
+		"Dragons": {
+			"id": 26,
+			"name": "Dragons",
+			"resists": {
+				"Body": 21,
+				"Cold": 20,
+				"Crush": 15,
+				"Energy": 32,
+				"Heat": 40,
+				"Matter": 15,
+				"Natural": 0,
+				"Slash": 15,
+				"Spirit": 22,
+				"Thrust": 15
+			}
+		},
+		"Drake": {
+			"id": 2002,
+			"name": "Drake",
+			"resists": {
+				"Body": 10,
+				"Cold": 15,
+				"Crush": 0,
+				"Energy": 15,
+				"Heat": 10,
+				"Matter": 5,
+				"Natural": 0,
+				"Slash": -5,
+				"Spirit": -10,
+				"Thrust": -15
+			}
+		},
+		"Elemental": {
+			"id": 2003,
+			"name": "Elemental",
+			"resists": {
+				"Body": 15,
+				"Cold": 0,
+				"Crush": 15,
+				"Energy": 10,
+				"Heat": 5,
+				"Matter": 0,
+				"Natural": -5,
+				"Slash": -10,
+				"Spirit": -15,
+				"Thrust": 0
+			}
+		},
+		"Giant": {
+			"id": 2004,
+			"name": "Giant",
+			"resists": {
+				"Body": 5,
+				"Cold": 15,
+				"Crush": 15,
+				"Energy": -15,
+				"Heat": -25,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": -10,
+				"Spirit": 0,
+				"Thrust": -10
+			}
+		},
+		"Humanoid": {
+			"id": 2005,
+			"name": "Humanoid",
+			"resists": {
+				"Body": 15,
+				"Cold": 10,
+				"Crush": 5,
+				"Energy": 0,
+				"Heat": -5,
+				"Matter": -10,
+				"Natural": -15,
+				"Slash": 0,
+				"Spirit": -15,
+				"Thrust": -10
+			}
+		},
+		"Insect": {
+			"id": 2010,
+			"name": "Insect",
+			"resists": {
+				"Body": -10,
+				"Cold": -15,
+				"Crush": 0,
+				"Energy": -15,
+				"Heat": -10,
+				"Matter": -5,
+				"Natural": 0,
+				"Slash": 5,
+				"Spirit": 10,
+				"Thrust": 15
+			}
+		},
+		"Leviathan": {
+			"id": 24,
+			"name": "Leviathan",
+			"resists": {
+				"Body": 15,
+				"Cold": 15,
+				"Crush": 0,
+				"Energy": 15,
+				"Heat": 15,
+				"Matter": 15,
+				"Natural": 15,
+				"Slash": 0,
+				"Spirit": 15,
+				"Thrust": 0
+			}
+		},
+		"Magic": {
+			"id": 23,
+			"name": "Magic",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 100,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 100,
+				"Spirit": 0,
+				"Thrust": 100
+			}
+		},
+		"Magical": {
+			"id": 2006,
+			"name": "Magical",
+			"resists": {
+				"Body": 10,
+				"Cold": 5,
+				"Crush": 0,
+				"Energy": -5,
+				"Heat": -10,
+				"Matter": -15,
+				"Natural": 0,
+				"Slash": -15,
+				"Spirit": -10,
+				"Thrust": -5
+			}
+		},
+		"Might": {
+			"id": 22,
+			"name": "Might",
+			"resists": {
+				"Body": 100,
+				"Cold": 100,
+				"Crush": 0,
+				"Energy": 100,
+				"Heat": 100,
+				"Matter": 100,
+				"Natural": 100,
+				"Slash": 0,
+				"Spirit": 100,
+				"Thrust": 0
+			}
+		},
+		"Monster": {
+			"id": 2011,
+			"name": "Monster",
+			"resists": {
+				"Body": -15,
+				"Cold": 0,
+				"Crush": -15,
+				"Energy": -10,
+				"Heat": -5,
+				"Matter": 0,
+				"Natural": 5,
+				"Slash": 10,
+				"Spirit": 15,
+				"Thrust": 0
+			}
+		},
+		"Nok": {
+			"id": 3000,
+			"name": "Nok",
+			"resists": {
+				"Body": 100,
+				"Cold": 100,
+				"Crush": 25,
+				"Energy": 100,
+				"Heat": 100,
+				"Matter": 100,
+				"Natural": 100,
+				"Slash": 25,
+				"Spirit": 100,
+				"Thrust": 25
+			}
+		},
+		"Plant": {
+			"id": 2007,
+			"name": "Plant",
+			"resists": {
+				"Body": 15,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 10,
+				"Heat": -20,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": -20,
+				"Spirit": 0,
+				"Thrust": 15
+			}
+		},
+		"Reptile": {
+			"id": 2008,
+			"name": "Reptile",
+			"resists": {
+				"Body": 0,
+				"Cold": -15,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 15,
+				"Spirit": 0,
+				"Thrust": -15
+			}
+		},
+		"Unknown": {
+			"id": 2033,
+			"name": "Unknown",
+			"resists": {
+				"Body": 0,
+				"Cold": 0,
+				"Crush": 0,
+				"Energy": 0,
+				"Heat": 0,
+				"Matter": 0,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": 0,
+				"Thrust": 0
+			}
+		},
+		"Undead": {
+			"id": 2009,
+			"name": "Undead",
+			"resists": {
+				"Body": -5,
+				"Cold": 15,
+				"Crush": -20,
+				"Energy": 0,
+				"Heat": -5,
+				"Matter": -10,
+				"Natural": 0,
+				"Slash": 0,
+				"Spirit": -30,
+				"Thrust": 20
+			}
+		},
+		"wintryquestmobs": {
+			"id": 25,
+			"name": "wintryquestmobs",
+			"resists": {
+				"Body": 22,
+				"Cold": 35,
+				"Crush": 25,
+				"Energy": 20,
+				"Heat": 14,
+				"Matter": 18,
+				"Natural": 50,
+				"Slash": 26,
+				"Spirit": 23,
+				"Thrust": 24
+			}
+		}
+	}
+}

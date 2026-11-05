@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://src/daoc/ui/pregame/DaocCharacterSlot.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/daoc/pregame/ui/misc_pieces_new.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_radio"]
+resource_local_to_scene = true
+atlas = ExtResource("2")
+region = Rect2(216, 8, 20, 20)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hitbox"]
+
+[node name="CharacterSlot" type="Control"]
+custom_minimum_size = Vector2(244, 45)
+offset_right = 244.0
+offset_bottom = 45.0
+script = ExtResource("1")
+
+[node name="Hitbox" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hitbox")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hitbox")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hitbox")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hitbox")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hitbox")
+flat = true
+
+[node name="Radio" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_radio")
+
+[node name="TopLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 8.0
+offset_right = 244.0
+offset_bottom = 25.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.78, 0.78, 0.72, 1)
+theme_override_font_sizes/font_size = 14
+text = "Emplacement libre"
+
+[node name="BottomLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 26.0
+offset_right = 244.0
+offset_bottom = 44.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.67, 0.63, 0.51, 1)
+theme_override_font_sizes/font_size = 11
+

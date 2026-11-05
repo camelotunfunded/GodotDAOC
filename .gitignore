@@ -1,0 +1,14 @@
+.godot/
+.godot_runtime/
+*.log
+*.zip
+*.7z
+*.local.json
+.env
+_godot_daoc_cache/
+generated/
+reports/
+captures/
+client/
+Dark Age of Camelot/
+

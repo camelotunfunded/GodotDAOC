@@ -1,0 +1,1348 @@
+{
+	"checkpoint": "P1_23_DOL_CLASS_TABLE",
+	"schema_version": 1,
+	"generated_utc": "2026-09-08 21:54:09",
+	"basis": "DOL_CODE",
+	"source": {
+		"GameServer/GlobalConstants.cs": {
+			"ok": true,
+			"path": "GlobalConstants.cs",
+			"size": 62806,
+			"modified": 1748787955
+		},
+		"GameServer/gameobjects/CharacterClasses/CharacterClassDB.cs": {
+			"ok": true,
+			"path": "CharacterClassDB.cs",
+			"size": 58323,
+			"modified": 1748787958
+		},
+		"GameServer/gameobjects/GameLiving.cs": {
+			"ok": true,
+			"path": "GameLiving.cs",
+			"size": 217527,
+			"modified": 1748787958
+		},
+		"GameServer/gameobjects/GamePlayer.cs": {
+			"ok": true,
+			"path": "GamePlayer.cs",
+			"size": 519048,
+			"modified": 1748787958
+		},
+		"GameServer/gameutils/SkillConstants.cs": {
+			"ok": true,
+			"path": "SkillConstants.cs",
+			"size": 25448,
+			"modified": 1748787959
+		}
+	},
+	"races": {
+		"Unknown": 0,
+		"Briton": 1,
+		"Avalonian": 2,
+		"Highlander": 3,
+		"Saracen": 4,
+		"Norseman": 5,
+		"Troll": 6,
+		"Dwarf": 7,
+		"Kobold": 8,
+		"Celt": 9,
+		"Firbolg": 10,
+		"Elf": 11,
+		"Lurikeen": 12,
+		"Inconnu": 13,
+		"Valkyn": 14,
+		"Sylvan": 15,
+		"HalfOgre": 16,
+		"Frostalf": 17,
+		"Shar": 18,
+		"AlbionMinotaur": 19,
+		"MidgardMinotaur": 20,
+		"HiberniaMinotaur": 21,
+		"Korazh": 19,
+		"Deifrang": 20,
+		"Graoch": 21
+	},
+	"classes": [
+		{
+			"name": "Paladin",
+			"id": 1,
+			"display_name": "Paladin",
+			"base_class": "Fighter",
+			"base_hp": 760,
+			"base_weapon_skill": 380,
+			"spec_point_multiplier": 20,
+			"primary_stat": "CON",
+			"secondary_stat": "PIE",
+			"tertiary_stat": "STR",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"Highlander",
+				"Saracen"
+			],
+			"auto_train_skills": [
+				"Slash",
+				"Chants"
+			]
+		},
+		{
+			"name": "Armsman",
+			"id": 2,
+			"display_name": "Armsman",
+			"base_class": "Fighter",
+			"base_hp": 880,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "CON",
+			"tertiary_stat": "DEX",
+			"mana_stat": "",
+			"eligible_races": [
+				"Korazh",
+				"Avalonian",
+				"Briton",
+				"HalfOgre",
+				"Highlander",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": [
+				"Slash",
+				"Thrust"
+			]
+		},
+		{
+			"name": "Scout",
+			"id": 3,
+			"display_name": "Scout",
+			"base_class": "AlbionRogue",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 20,
+			"primary_stat": "DEX",
+			"secondary_stat": "QUI",
+			"tertiary_stat": "STR",
+			"mana_stat": "DEX",
+			"eligible_races": [
+				"Briton",
+				"Highlander",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": [
+				"Archery",
+				"Longbows"
+			]
+		},
+		{
+			"name": "Minstrel",
+			"id": 4,
+			"display_name": "Minstrel",
+			"base_class": "AlbionRogue",
+			"base_hp": 720,
+			"base_weapon_skill": 380,
+			"spec_point_multiplier": 15,
+			"primary_stat": "CHR",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "STR",
+			"mana_stat": "CHR",
+			"eligible_races": [
+				"Briton",
+				"Highlander",
+				"Saracen"
+			],
+			"auto_train_skills": [
+				"Instruments"
+			]
+		},
+		{
+			"name": "Theurgist",
+			"id": 5,
+			"display_name": "Theurgist",
+			"base_class": "Elementalist",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"HalfOgre"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Cleric",
+			"id": 6,
+			"display_name": "Cleric",
+			"base_class": "Acolyte",
+			"base_hp": 720,
+			"base_weapon_skill": 320,
+			"spec_point_multiplier": 10,
+			"primary_stat": "PIE",
+			"secondary_stat": "CON",
+			"tertiary_stat": "STR",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"Highlander"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Wizard",
+			"id": 7,
+			"display_name": "Wizard",
+			"base_class": "Elementalist",
+			"base_hp": 560,
+			"base_weapon_skill": 240,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"HalfOgre"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Sorcerer",
+			"id": 8,
+			"display_name": "Sorcerer",
+			"base_class": "Mage",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"HalfOgre",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Infiltrator",
+			"id": 9,
+			"display_name": "Infiltrator",
+			"base_class": "AlbionRogue",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 25,
+			"primary_stat": "DEX",
+			"secondary_stat": "QUI",
+			"tertiary_stat": "STR",
+			"mana_stat": "",
+			"eligible_races": [
+				"Briton",
+				"Highlander",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": [
+				"Stealth"
+			]
+		},
+		{
+			"name": "Friar",
+			"id": 10,
+			"display_name": "Friar",
+			"base_class": "Acolyte",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 18,
+			"primary_stat": "PIE",
+			"secondary_stat": "CON",
+			"tertiary_stat": "STR",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"Highlander"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Mercenary",
+			"id": 11,
+			"display_name": "Mercenary",
+			"base_class": "Fighter",
+			"base_hp": 880,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "CON",
+			"mana_stat": "",
+			"eligible_races": [
+				"Korazh",
+				"Avalonian",
+				"Briton",
+				"HalfOgre",
+				"Highlander",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": [
+				"Slash",
+				"Thrust"
+			]
+		},
+		{
+			"name": "Necromancer",
+			"id": 12,
+			"display_name": "Necromancer",
+			"base_class": "Disciple",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Briton",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Cabalist",
+			"id": 13,
+			"display_name": "Cabalist",
+			"base_class": "Mage",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"HalfOgre",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Fighter",
+			"id": 14,
+			"display_name": "Fighter",
+			"base_class": "Fighter",
+			"base_hp": 880,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "",
+			"eligible_races": [
+				"Korazh",
+				"Avalonian",
+				"Briton",
+				"HalfOgre",
+				"Highlander",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Elementalist",
+			"id": 15,
+			"display_name": "Elementalist",
+			"base_class": "Elementalist",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"HalfOgre"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Acolyte",
+			"id": 16,
+			"display_name": "Acolyte",
+			"base_class": "Acolyte",
+			"base_hp": 720,
+			"base_weapon_skill": 320,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Korazh",
+				"Avalonian",
+				"Briton",
+				"Highlander",
+				"Inconnu"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "AlbionRogue",
+			"id": 17,
+			"display_name": "Rogue",
+			"base_class": "AlbionRogue",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "",
+			"eligible_races": [
+				"Briton",
+				"Highlander",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Mage",
+			"id": 18,
+			"display_name": "Mage",
+			"base_class": "Mage",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Avalonian",
+				"Briton",
+				"HalfOgre",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Reaver",
+			"id": 19,
+			"display_name": "Reaver",
+			"base_class": "Fighter",
+			"base_hp": 760,
+			"base_weapon_skill": 380,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "PIE",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Briton",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": [
+				"Slash",
+				"Flexible"
+			]
+		},
+		{
+			"name": "Disciple",
+			"id": 20,
+			"display_name": "Disciple",
+			"base_class": "Disciple",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Briton",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Thane",
+			"id": 21,
+			"display_name": "Thane",
+			"base_class": "Viking",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "PIE",
+			"tertiary_stat": "CON",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Deifrang",
+				"Norseman",
+				"Troll"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Warrior",
+			"id": 22,
+			"display_name": "Warrior",
+			"base_class": "Viking",
+			"base_hp": 880,
+			"base_weapon_skill": 460,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "CON",
+			"tertiary_stat": "DEX",
+			"mana_stat": "",
+			"eligible_races": [
+				"Dwarf",
+				"Kobold",
+				"Deifrang",
+				"Norseman",
+				"Troll",
+				"Valkyn"
+			],
+			"auto_train_skills": [
+				"Axe",
+				"Hammer",
+				"Sword"
+			]
+		},
+		{
+			"name": "Shadowblade",
+			"id": 23,
+			"display_name": "Shadowblade",
+			"base_class": "MidgardRogue",
+			"base_hp": 760,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 22,
+			"primary_stat": "DEX",
+			"secondary_stat": "QUI",
+			"tertiary_stat": "STR",
+			"mana_stat": "",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Norseman",
+				"Valkyn"
+			],
+			"auto_train_skills": [
+				"Stealth"
+			]
+		},
+		{
+			"name": "Skald",
+			"id": 24,
+			"display_name": "Skald",
+			"base_class": "Viking",
+			"base_hp": 760,
+			"base_weapon_skill": 380,
+			"spec_point_multiplier": 15,
+			"primary_stat": "CHR",
+			"secondary_stat": "STR",
+			"tertiary_stat": "CON",
+			"mana_stat": "CHR",
+			"eligible_races": [
+				"Dwarf",
+				"Kobold",
+				"Norseman",
+				"Troll"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Hunter",
+			"id": 25,
+			"display_name": "Hunter",
+			"base_class": "MidgardRogue",
+			"base_hp": 720,
+			"base_weapon_skill": 380,
+			"spec_point_multiplier": 20,
+			"primary_stat": "DEX",
+			"secondary_stat": "QUI",
+			"tertiary_stat": "STR",
+			"mana_stat": "DEX",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Norseman",
+				"Valkyn"
+			],
+			"auto_train_skills": [
+				"Archery",
+				"Composite Bow"
+			]
+		},
+		{
+			"name": "Healer",
+			"id": 26,
+			"display_name": "Healer",
+			"base_class": "Seer",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 10,
+			"primary_stat": "PIE",
+			"secondary_stat": "CON",
+			"tertiary_stat": "STR",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Norseman"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Spiritmaster",
+			"id": 27,
+			"display_name": "Spiritmaster",
+			"base_class": "Mystic",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "PIE",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Frostalf",
+				"Kobold",
+				"Norseman"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Shaman",
+			"id": 28,
+			"display_name": "Shaman",
+			"base_class": "Seer",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 10,
+			"primary_stat": "PIE",
+			"secondary_stat": "CON",
+			"tertiary_stat": "STR",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Troll"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Runemaster",
+			"id": 29,
+			"display_name": "Runemaster",
+			"base_class": "Mystic",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "PIE",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Norseman"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Bonedancer",
+			"id": 30,
+			"display_name": "Bonedancer",
+			"base_class": "Mystic",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "PIE",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Kobold",
+				"Troll",
+				"Valkyn"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Berserker",
+			"id": 31,
+			"display_name": "Berserker",
+			"base_class": "Viking",
+			"base_hp": 880,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "CON",
+			"mana_stat": "",
+			"eligible_races": [
+				"Dwarf",
+				"Deifrang",
+				"Norseman",
+				"Troll",
+				"Valkyn"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Savage",
+			"id": 32,
+			"display_name": "Savage",
+			"base_class": "Viking",
+			"base_hp": 880,
+			"base_weapon_skill": 400,
+			"spec_point_multiplier": 15,
+			"primary_stat": "DEX",
+			"secondary_stat": "QUI",
+			"tertiary_stat": "STR",
+			"mana_stat": "",
+			"eligible_races": [
+				"Dwarf",
+				"Kobold",
+				"Norseman",
+				"Troll",
+				"Valkyn"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Heretic",
+			"id": 33,
+			"display_name": "Heretic",
+			"base_class": "Acolyte",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 20,
+			"primary_stat": "PIE",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "CON",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Korazh",
+				"Avalonian",
+				"Briton",
+				"Inconnu",
+				"Saracen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Valkyrie",
+			"id": 34,
+			"display_name": "Valkyrie",
+			"base_class": "Viking",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 20,
+			"primary_stat": "CON",
+			"secondary_stat": "STR",
+			"tertiary_stat": "DEX",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Norseman",
+				"Valkyn"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Viking",
+			"id": 35,
+			"display_name": "Viking",
+			"base_class": "Viking",
+			"base_hp": 880,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Deifrang",
+				"Norseman",
+				"Troll",
+				"Valkyn"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Mystic",
+			"id": 36,
+			"display_name": "Mystic",
+			"base_class": "Mystic",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Norseman",
+				"Troll",
+				"Valkyn"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Seer",
+			"id": 37,
+			"display_name": "Seer",
+			"base_class": "Seer",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Norseman",
+				"Troll"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "MidgardRogue",
+			"id": 38,
+			"display_name": "Rogue",
+			"base_class": "MidgardRogue",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "",
+			"eligible_races": [
+				"Dwarf",
+				"Frostalf",
+				"Kobold",
+				"Norseman",
+				"Valkyn"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Bainshee",
+			"id": 39,
+			"display_name": "Bainshee",
+			"base_class": "Magician",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "CON",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Lurikeen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Eldritch",
+			"id": 40,
+			"display_name": "Eldritch",
+			"base_class": "Magician",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Elf",
+				"Lurikeen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Enchanter",
+			"id": 41,
+			"display_name": "Enchanter",
+			"base_class": "Magician",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Elf",
+				"Lurikeen"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Mentalist",
+			"id": 42,
+			"display_name": "Mentalist",
+			"base_class": "Magician",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "QUI",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Lurikeen",
+				"Shar"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Blademaster",
+			"id": 43,
+			"display_name": "Blademaster",
+			"base_class": "Guardian",
+			"base_hp": 880,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "DEX",
+			"tertiary_stat": "CON",
+			"mana_stat": "",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Firbolg",
+				"Graoch",
+				"Shar"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Hero",
+			"id": 44,
+			"display_name": "Hero",
+			"base_class": "Guardian",
+			"base_hp": 880,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "CON",
+			"tertiary_stat": "DEX",
+			"mana_stat": "",
+			"eligible_races": [
+				"Celt",
+				"Firbolg",
+				"Graoch",
+				"Lurikeen",
+				"Shar",
+				"Sylvan"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Champion",
+			"id": 45,
+			"display_name": "Champion",
+			"base_class": "Guardian",
+			"base_hp": 760,
+			"base_weapon_skill": 380,
+			"spec_point_multiplier": 20,
+			"primary_stat": "STR",
+			"secondary_stat": "INT",
+			"tertiary_stat": "DEX",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Graoch",
+				"Lurikeen",
+				"Shar"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Warden",
+			"id": 46,
+			"display_name": "Warden",
+			"base_class": "Naturalist",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 18,
+			"primary_stat": "EMP",
+			"secondary_stat": "STR",
+			"tertiary_stat": "CON",
+			"mana_stat": "EMP",
+			"eligible_races": [
+				"Celt",
+				"Firbolg",
+				"Graoch",
+				"Sylvan"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Druid",
+			"id": 47,
+			"display_name": "Druid",
+			"base_class": "Naturalist",
+			"base_hp": 720,
+			"base_weapon_skill": 320,
+			"spec_point_multiplier": 10,
+			"primary_stat": "EMP",
+			"secondary_stat": "CON",
+			"tertiary_stat": "STR",
+			"mana_stat": "EMP",
+			"eligible_races": [
+				"Celt",
+				"Firbolg",
+				"Sylvan"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Bard",
+			"id": 48,
+			"display_name": "Bard",
+			"base_class": "Naturalist",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 15,
+			"primary_stat": "CHR",
+			"secondary_stat": "EMP",
+			"tertiary_stat": "CON",
+			"mana_stat": "CHR",
+			"eligible_races": [
+				"Celt",
+				"Firbolg"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Nightshade",
+			"id": 49,
+			"display_name": "Nightshade",
+			"base_class": "Stalker",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 22,
+			"primary_stat": "DEX",
+			"secondary_stat": "QUI",
+			"tertiary_stat": "STR",
+			"mana_stat": "DEX",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Lurikeen"
+			],
+			"auto_train_skills": [
+				"Stealth"
+			]
+		},
+		{
+			"name": "Ranger",
+			"id": 50,
+			"display_name": "Ranger",
+			"base_class": "Stalker",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 20,
+			"primary_stat": "DEX",
+			"secondary_stat": "QUI",
+			"tertiary_stat": "STR",
+			"mana_stat": "DEX",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Lurikeen",
+				"Shar",
+				"Sylvan"
+			],
+			"auto_train_skills": [
+				"Archery",
+				"Recurve Bow"
+			]
+		},
+		{
+			"name": "Magician",
+			"id": 51,
+			"display_name": "Magician",
+			"base_class": "Magician",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Lurikeen",
+				"Shar"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Guardian",
+			"id": 52,
+			"display_name": "Guardian",
+			"base_class": "Guardian",
+			"base_hp": 880,
+			"base_weapon_skill": 400,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Firbolg",
+				"Graoch",
+				"Lurikeen",
+				"Shar",
+				"Sylvan"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Naturalist",
+			"id": 53,
+			"display_name": "Naturalist",
+			"base_class": "Naturalist",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "EMP",
+			"eligible_races": [
+				"Celt",
+				"Firbolg",
+				"Sylvan",
+				"Graoch"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Stalker",
+			"id": 54,
+			"display_name": "Stalker",
+			"base_class": "Stalker",
+			"base_hp": 720,
+			"base_weapon_skill": 360,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "",
+			"eligible_races": [
+				"Celt",
+				"Elf",
+				"Lurikeen",
+				"Shar"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Animist",
+			"id": 55,
+			"display_name": "Animist",
+			"base_class": "Forester",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "INT",
+			"secondary_stat": "CON",
+			"tertiary_stat": "DEX",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Celt",
+				"Firbolg",
+				"Sylvan"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Valewalker",
+			"id": 56,
+			"display_name": "Valewalker",
+			"base_class": "Forester",
+			"base_hp": 720,
+			"base_weapon_skill": 400,
+			"spec_point_multiplier": 15,
+			"primary_stat": "STR",
+			"secondary_stat": "INT",
+			"tertiary_stat": "CON",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Celt",
+				"Firbolg",
+				"Sylvan"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Forester",
+			"id": 57,
+			"display_name": "Forester",
+			"base_class": "Forester",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "",
+			"secondary_stat": "",
+			"tertiary_stat": "",
+			"mana_stat": "INT",
+			"eligible_races": [
+				"Celt",
+				"Firbolg",
+				"Sylvan"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Vampiir",
+			"id": 58,
+			"display_name": "Vampiir",
+			"base_class": "Stalker",
+			"base_hp": 878,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 15,
+			"primary_stat": "CON",
+			"secondary_stat": "STR",
+			"tertiary_stat": "DEX",
+			"mana_stat": "",
+			"eligible_races": [
+				"Celt",
+				"Lurikeen",
+				"Shar"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "Warlock",
+			"id": 59,
+			"display_name": "Warlock",
+			"base_class": "Mystic",
+			"base_hp": 560,
+			"base_weapon_skill": 280,
+			"spec_point_multiplier": 10,
+			"primary_stat": "PIE",
+			"secondary_stat": "CON",
+			"tertiary_stat": "DEX",
+			"mana_stat": "PIE",
+			"eligible_races": [
+				"Frostalf",
+				"Kobold",
+				"Norseman"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "MaulerAlb",
+			"id": 60,
+			"display_name": "Mauler",
+			"base_class": "Fighter",
+			"base_hp": 600,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 15,
+			"primary_stat": "STR",
+			"secondary_stat": "CON",
+			"tertiary_stat": "QUI",
+			"mana_stat": "STR",
+			"eligible_races": [
+				"Korazh",
+				"Briton",
+				"Inconnu"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "MaulerMid",
+			"id": 61,
+			"display_name": "Mauler",
+			"base_class": "Viking",
+			"base_hp": 600,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 15,
+			"primary_stat": "STR",
+			"secondary_stat": "CON",
+			"tertiary_stat": "QUI",
+			"mana_stat": "STR",
+			"eligible_races": [
+				"Kobold",
+				"Deifrang",
+				"Norseman"
+			],
+			"auto_train_skills": []
+		},
+		{
+			"name": "MaulerHib",
+			"id": 62,
+			"display_name": "Mauler",
+			"base_class": "Guardian",
+			"base_hp": 600,
+			"base_weapon_skill": 440,
+			"spec_point_multiplier": 15,
+			"primary_stat": "STR",
+			"secondary_stat": "CON",
+			"tertiary_stat": "QUI",
+			"mana_stat": "STR",
+			"eligible_races": [
+				"Celt",
+				"Graoch",
+				"Lurikeen"
+			],
+			"auto_train_skills": []
+		}
+	],
+	"note": "BaseHP et BaseWeaponSkill sont les ENTREES de player_max_health et player_weapon_skill. Valeurs par defaut du code ; un serveur reel peut les avoir surchargees en base."
+}

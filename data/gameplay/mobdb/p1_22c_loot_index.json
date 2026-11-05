@@ -1,0 +1,319 @@
+{
+	"checkpoint": "P1_22C_LOOT_INDEX",
+	"schema_version": 1,
+	"generated_utc": "2026-09-08T15:46:32",
+	"source": {
+		"loottemplate": {
+			"ok": true,
+			"path": "loottemplate.sql",
+			"size": 194474,
+			"modified": 1783076988
+		},
+		"itemtemplate": {
+			"ok": true,
+			"path": "itemtemplate.sql",
+			"size": 13975270,
+			"modified": 1783076988
+		}
+	},
+	"templates": {
+		"Ellyll Villager": [
+			{
+				"item_id": "Ancient_Crushed_Focus_Stone",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Ancient_Giant_Blood",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Ancient_Mirror",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Ancient_Pure_Mercury",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Enriched_Quicksilver",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 1
+			},
+			{
+				"item_id": "Ancient_Troll_Blood",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Bottle_of_Ellyll_Wine",
+				"chance_raw": -3,
+				"chance_percent": 0,
+				"chance_basis": "NEGATIVE_UNEXPLAINED",
+				"count": 1
+			}
+		],
+		"Siabra Waterwalker": [
+			{
+				"item_id": "Ancient_Crushed_Focus_Stone",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Ancient_Giant_Blood",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Ancient_Mirror",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Ancient_Pure_Mercury",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			},
+			{
+				"item_id": "Ancient_Troll_Blood",
+				"chance_raw": 10,
+				"chance_percent": 10,
+				"chance_basis": "PERCENT",
+				"count": 3
+			}
+		],
+		"Ghastly Midgard Invader": [
+			{
+				"item_id": "Shadowy_Helm",
+				"chance_raw": -3,
+				"chance_percent": 0,
+				"chance_basis": "NEGATIVE_UNEXPLAINED",
+				"count": 1
+			}
+		],
+		"Ghastly Albion Invader": [
+			{
+				"item_id": "Vial_of_Ghastly_Vapor",
+				"chance_raw": -3,
+				"chance_percent": 0,
+				"chance_basis": "NEGATIVE_UNEXPLAINED",
+				"count": 1
+			}
+		]
+	},
+	"items": {
+		"Ancient_Crushed_Focus_Stone": {
+			"id_nb": "Ancient_Crushed_Focus_Stone",
+			"name": "Ancient Crushed Focus Stone",
+			"level": 1,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 541,
+			"weight": 0,
+			"price": 0,
+			"realm": 0,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 200,
+			"pack_size": 1,
+			"description": ""
+		},
+		"Ancient_Giant_Blood": {
+			"id_nb": "Ancient_Giant_Blood",
+			"name": "Ancient Giant Blood",
+			"level": 1,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 529,
+			"weight": 0,
+			"price": 0,
+			"realm": 0,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 200,
+			"pack_size": 1,
+			"description": ""
+		},
+		"Ancient_Mirror": {
+			"id_nb": "Ancient_Mirror",
+			"name": "Ancient Mirror",
+			"level": 1,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 592,
+			"weight": 2,
+			"price": 0,
+			"realm": 0,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 200,
+			"pack_size": 1,
+			"description": ""
+		},
+		"Ancient_Pure_Mercury": {
+			"id_nb": "Ancient_Pure_Mercury",
+			"name": "Ancient Pure Mercury",
+			"level": 1,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 14,
+			"model": 523,
+			"weight": 0,
+			"price": 0,
+			"realm": 0,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 200,
+			"pack_size": 1,
+			"description": ""
+		},
+		"Ancient_Troll_Blood": {
+			"id_nb": "Ancient_Troll_Blood",
+			"name": "Ancient Troll Blood",
+			"level": 1,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 529,
+			"weight": 0,
+			"price": 0,
+			"realm": 0,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 200,
+			"pack_size": 1,
+			"description": ""
+		},
+		"Bottle_of_Ellyll_Wine": {
+			"id_nb": "Bottle_of_Ellyll_Wine",
+			"name": "Bottle of Ellyll Wine",
+			"level": 45,
+			"quality": 0,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 99,
+			"weight": 1,
+			"price": 45339,
+			"realm": 1,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 30,
+			"pack_size": 1,
+			"description": "Lyonet is offering a reward for bringing her Ellyll Wine. Seek her out in Castle Sauvage. Minimum Level: 45 Maximum Level: 47"
+		},
+		"Enriched_Quicksilver": {
+			"id_nb": "Enriched_Quicksilver",
+			"name": "Enriched Quicksilver",
+			"level": 1,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 523,
+			"weight": 0,
+			"price": 0,
+			"realm": 0,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 200,
+			"pack_size": 1,
+			"description": ""
+		},
+		"Shadowy_Helm": {
+			"id_nb": "Shadowy_Helm",
+			"name": "Shadowy Helm",
+			"level": 43,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 438,
+			"weight": 1,
+			"price": 41925,
+			"realm": 3,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 30,
+			"pack_size": 1,
+			"description": "Yealcha of Innis Carthaig is looking for brave souls to collect shadowy helms from the ghostly Midgard invaders. Minimum Level: 43 Maximum Level: 46"
+		},
+		"Vial_of_Ghastly_Vapor": {
+			"id_nb": "Vial_of_Ghastly_Vapor",
+			"name": "Vial of Ghastly Vapor",
+			"level": 42,
+			"quality": 85,
+			"dps_af": 0,
+			"spd_abs": 0,
+			"object_type": 0,
+			"item_type": 40,
+			"model": 488,
+			"weight": 0,
+			"price": 40950,
+			"realm": 2,
+			"hand": 0,
+			"damage_type": 0,
+			"is_dropable": true,
+			"can_drop_as_loot": true,
+			"max_count": 30,
+			"pack_size": 1,
+			"description": "Osk needs the special ghastly vapors from the ghastly Albion invaders to maker her elixirs. She is rewarding adventurers well who bring vials to her  at Audilten. Minimum Level: 42 Maximum Level: 45"
+		}
+	},
+	"missing_item_templates": []
+}

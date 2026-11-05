@@ -1,0 +1,51 @@
+{
+  "schema_version": "p1_17e2c.1",
+  "checkpoint": "P1_17E2C_ABSTRACT_SERVER_DB",
+  "created_by": "GPT-5.5 Thinking",
+  "created_at": "2026-07-03",
+  "abstract_only": true,
+  "source_matrix": "daoc_dol_opendaoc_client_mechanics_comparison_P1_17E2B.csv",
+  "warning": "Ces .db sont des JSON abstraits pour Godot. Ils ne contiennent pas de vérité serveur runtime et ne doivent jamais appliquer X/Y/Z/Heading sans données DB officielles + validation de frame de coordonnées.",
+  "db_kind": "daoc_abstract_server_instruction_schema",
+  "required_record_fields": [
+    "id",
+    "domain",
+    "mechanic",
+    "priority",
+    "godot_contract_or_model",
+    "client_godot_impact",
+    "next_action",
+    "abstract_only",
+    "runtime_authority",
+    "implemented_runtime_effect"
+  ],
+  "reserved_domains": [
+    "network",
+    "world",
+    "movement",
+    "combat",
+    "spells",
+    "inventory",
+    "npc",
+    "social",
+    "quests",
+    "rvr",
+    "housing",
+    "crafting",
+    "database",
+    "debug"
+  ],
+  "runtime_safety_rules": [
+    "No record may apply server coordinates to runtime by itself.",
+    "WorldDestination with coordinate_frame_confirmed=false is diagnostic only.",
+    "OpenDAoC and DOL rows may converge functionally but must keep backend-specific source references.",
+    "Fallback records must stay explicitly marked as fallback or abstract.",
+    "Tables imported later must be validated before becoming server_imported authority."
+  ],
+  "record_field_meaning": {
+    "godot_contract_or_model": "Nom du contrat ou modèle neutre à prévoir côté client Godot.",
+    "client_godot_impact": "Ce que le client doit afficher/mettre à jour/écouter, pas l’autorité gameplay.",
+    "next_action": "Action d’implémentation ou d’audit suivante.",
+    "implemented_runtime_effect": "Toujours false dans P1-17E2C."
+  }
+}

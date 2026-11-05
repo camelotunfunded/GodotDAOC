@@ -1,0 +1,2456 @@
+{
+	"checkpoint": "P1_34_FACTION_INDEX",
+	"schema_version": 1,
+	"generated_utc": "2026-09-09 21:00:37",
+	"basis": "DUMP_FACTION",
+	"source": {
+		"faction": {
+			"ok": true,
+			"path": "faction.sql",
+			"size": 19572,
+			"modified": 1783076987
+		},
+		"linkedfaction": {
+			"ok": true,
+			"path": "linkedfaction.sql",
+			"size": 25254,
+			"modified": 1783076988
+		}
+	},
+	"character_reputation_rows": 0,
+	"character_reputation_state": "EMPTY_TABLE",
+	"note": "factionaggrolevel porte la reputation PERSONNELLE d un personnage ; etat du dump : EMPTY_TABLE, 0 ligne(s). Il ne pouvait donc pas etre ce qui manquait pour donner une cible a un PNJ. Ce qui rend un PNJ hostile a un AUTRE PNJ est linkedfaction.",
+	"link_counts": {
+		"rows": 313,
+		"friend": 71,
+		"enemy": 242,
+		"dangling": 0
+	},
+	"factions": {
+		"1": {
+			"id": 1,
+			"name": "Applesnatchers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				247
+			]
+		},
+		"2": {
+			"id": 2,
+			"name": "Barfog Renegade",
+			"base_aggro_level": 100,
+			"friends": [
+				226
+			],
+			"enemies": [
+				51,
+				57
+			]
+		},
+		"3": {
+			"id": 3,
+			"name": "Black Mountains Goblins",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				27,
+				29,
+				57
+			]
+		},
+		"4": {
+			"id": 4,
+			"name": "Boogys",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				14
+			]
+		},
+		"5": {
+			"id": 5,
+			"name": "Caer Caddug",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"6": {
+			"id": 6,
+			"name": "Caldey Outpost",
+			"base_aggro_level": 30,
+			"friends": [
+				16,
+				39
+			],
+			"enemies": [
+				20,
+				64
+			]
+		},
+		"7": {
+			"id": 7,
+			"name": "Chaotic Constructs",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				20
+			]
+		},
+		"8": {
+			"id": 8,
+			"name": "Children of Orylie",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				16,
+				20,
+				37,
+				38,
+				50
+			]
+		},
+		"9": {
+			"id": 9,
+			"name": "Clan Drau'gyn",
+			"base_aggro_level": 100,
+			"friends": [
+				10,
+				11,
+				12,
+				13,
+				20
+			],
+			"enemies": [
+				16
+			]
+		},
+		"10": {
+			"id": 10,
+			"name": "Clan Dry'ak",
+			"base_aggro_level": 100,
+			"friends": [
+				9,
+				11,
+				12,
+				13,
+				20
+			],
+			"enemies": [
+				16
+			]
+		},
+		"11": {
+			"id": 11,
+			"name": "Clan Syhr'phint",
+			"base_aggro_level": 100,
+			"friends": [
+				9,
+				10,
+				12,
+				13,
+				20
+			],
+			"enemies": [
+				16
+			]
+		},
+		"12": {
+			"id": 12,
+			"name": "Clan Vyr'em",
+			"base_aggro_level": 100,
+			"friends": [
+				9,
+				10,
+				11,
+				13,
+				20
+			],
+			"enemies": [
+				16
+			]
+		},
+		"13": {
+			"id": 13,
+			"name": "Clan Wi'voron",
+			"base_aggro_level": 100,
+			"friends": [
+				9,
+				10,
+				11,
+				12,
+				20
+			],
+			"enemies": [
+				16
+			]
+		},
+		"14": {
+			"id": 14,
+			"name": "Cornwall Farmers",
+			"base_aggro_level": 15,
+			"friends": [],
+			"enemies": [
+				4
+			]
+		},
+		"15": {
+			"id": 15,
+			"name": "Coventina",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				49
+			]
+		},
+		"16": {
+			"id": 16,
+			"name": "Cryptos Mythicos",
+			"base_aggro_level": 100,
+			"friends": [
+				6
+			],
+			"enemies": [
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				37,
+				64
+			]
+		},
+		"17": {
+			"id": 17,
+			"name": "Dartmoor Grove Guardians",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"18": {
+			"id": 18,
+			"name": "Denizens of Llyn Barfog",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"19": {
+			"id": 19,
+			"name": "Devwy Company",
+			"base_aggro_level": 0,
+			"friends": [],
+			"enemies": []
+		},
+		"20": {
+			"id": 20,
+			"name": "Drakoran Legion",
+			"base_aggro_level": 100,
+			"friends": [
+				9,
+				10,
+				11,
+				12,
+				13,
+				64
+			],
+			"enemies": [
+				6,
+				7,
+				8
+			]
+		},
+		"21": {
+			"id": 21,
+			"name": "Duegar",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"22": {
+			"id": 22,
+			"name": "Ellyllon",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				62
+			]
+		},
+		"23": {
+			"id": 23,
+			"name": "Envy Drakes",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				160
+			]
+		},
+		"24": {
+			"id": 24,
+			"name": "Epona",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"25": {
+			"id": 25,
+			"name": "Followers of Arawn",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"26": {
+			"id": 26,
+			"name": "Followers of Orylle",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"27": {
+			"id": 27,
+			"name": "Forest Dryad",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				3
+			]
+		},
+		"28": {
+			"id": 28,
+			"name": "Forest Imps",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"29": {
+			"id": 29,
+			"name": "Forest Pixies",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				3
+			]
+		},
+		"30": {
+			"id": 30,
+			"name": "Forest Thieves",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"31": {
+			"id": 31,
+			"name": "Granite Giants of Dartmoor",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				60
+			]
+		},
+		"32": {
+			"id": 32,
+			"name": "Grimwood",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				34,
+				236
+			]
+		},
+		"33": {
+			"id": 33,
+			"name": "Gwalchmai",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"34": {
+			"id": 34,
+			"name": "Isolationists of Albion",
+			"base_aggro_level": 5,
+			"friends": [],
+			"enemies": [
+				32,
+				44
+			]
+		},
+		"35": {
+			"id": 35,
+			"name": "Keltoi",
+			"base_aggro_level": 100,
+			"friends": [
+				46,
+				235
+			],
+			"enemies": []
+		},
+		"36": {
+			"id": 36,
+			"name": "Knights Who Say 'Nee'",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"37": {
+			"id": 37,
+			"name": "Kulaclan",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				8,
+				16,
+				38
+			]
+		},
+		"38": {
+			"id": 38,
+			"name": "Kutaca",
+			"base_aggro_level": 100,
+			"friends": [
+				50
+			],
+			"enemies": [
+				8,
+				37
+			]
+		},
+		"39": {
+			"id": 39,
+			"name": "Lacula Sept",
+			"base_aggro_level": 5,
+			"friends": [
+				6
+			],
+			"enemies": []
+		},
+		"40": {
+			"id": 40,
+			"name": "Lady Leana",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				59
+			]
+		},
+		"41": {
+			"id": 41,
+			"name": "Lord Osric",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"42": {
+			"id": 42,
+			"name": "Marsh Trolls",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"43": {
+			"id": 43,
+			"name": "Mist Hunters",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				52
+			]
+		},
+		"44": {
+			"id": 44,
+			"name": "Mountain Boogies",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				34
+			]
+		},
+		"45": {
+			"id": 45,
+			"name": "Mountain Fellwood",
+			"base_aggro_level": 30,
+			"friends": [],
+			"enemies": []
+		},
+		"46": {
+			"id": 46,
+			"name": "Muryans",
+			"base_aggro_level": 100,
+			"friends": [
+				35
+			],
+			"enemies": []
+		},
+		"47": {
+			"id": 47,
+			"name": "Nain Dwarves",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"48": {
+			"id": 48,
+			"name": "Orchard Workers",
+			"base_aggro_level": 25,
+			"friends": [],
+			"enemies": []
+		},
+		"49": {
+			"id": 49,
+			"name": "Picts",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				15
+			]
+		},
+		"50": {
+			"id": 50,
+			"name": "Pixie Urchins",
+			"base_aggro_level": 100,
+			"friends": [
+				38
+			],
+			"enemies": [
+				8
+			]
+		},
+		"51": {
+			"id": 51,
+			"name": "Pobl y Traeth",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				2,
+				226
+			]
+		},
+		"52": {
+			"id": 52,
+			"name": "Ravenclan",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				43
+			]
+		},
+		"53": {
+			"id": 53,
+			"name": "Red Dwarves",
+			"base_aggro_level": 15,
+			"friends": [],
+			"enemies": []
+		},
+		"54": {
+			"id": 54,
+			"name": "Residents of Wearyall Hill",
+			"base_aggro_level": 0,
+			"friends": [],
+			"enemies": []
+		},
+		"55": {
+			"id": 55,
+			"name": "Salisbury Undead",
+			"base_aggro_level": 50,
+			"friends": [],
+			"enemies": []
+		},
+		"56": {
+			"id": 56,
+			"name": "Servants of Arawn",
+			"base_aggro_level": 50,
+			"friends": [],
+			"enemies": []
+		},
+		"57": {
+			"id": 57,
+			"name": "Spirits of Ludlow",
+			"base_aggro_level": 25,
+			"friends": [],
+			"enemies": [
+				2,
+				3
+			]
+		},
+		"58": {
+			"id": 58,
+			"name": "Spirits of Rome",
+			"base_aggro_level": 40,
+			"friends": [],
+			"enemies": []
+		},
+		"59": {
+			"id": 59,
+			"name": "Spriggarns",
+			"base_aggro_level": 40,
+			"friends": [],
+			"enemies": [
+				40
+			]
+		},
+		"60": {
+			"id": 60,
+			"name": "Stonecrush Clan",
+			"base_aggro_level": 50,
+			"friends": [],
+			"enemies": [
+				31,
+				195
+			]
+		},
+		"61": {
+			"id": 61,
+			"name": "Sylvan Goblins",
+			"base_aggro_level": 50,
+			"friends": [],
+			"enemies": []
+		},
+		"62": {
+			"id": 62,
+			"name": "Tylwyth Teg",
+			"base_aggro_level": 20,
+			"friends": [],
+			"enemies": [
+				22
+			]
+		},
+		"63": {
+			"id": 63,
+			"name": "Undead",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"64": {
+			"id": 64,
+			"name": "Undead Servants of Morgana",
+			"base_aggro_level": 100,
+			"friends": [
+				20
+			],
+			"enemies": [
+				6,
+				16
+			]
+		},
+		"65": {
+			"id": 65,
+			"name": "Ancient Grove",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"66": {
+			"id": 66,
+			"name": "Angered",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				79
+			]
+		},
+		"67": {
+			"id": 67,
+			"name": "Banshees",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"68": {
+			"id": 68,
+			"name": "Blackthorns",
+			"base_aggro_level": 100,
+			"friends": [
+				86
+			],
+			"enemies": []
+		},
+		"69": {
+			"id": 69,
+			"name": "Botonids",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				89,
+				98
+			]
+		},
+		"70": {
+			"id": 70,
+			"name": "Children of Cernunnos",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"71": {
+			"id": 71,
+			"name": "Cliff Dwellers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"72": {
+			"id": 72,
+			"name": "Cluracan",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				92
+			]
+		},
+		"73": {
+			"id": 73,
+			"name": "Clurican",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"74": {
+			"id": 74,
+			"name": "Cniogcrag",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				98,
+				106
+			]
+		},
+		"75": {
+			"id": 75,
+			"name": "Crom Cruiach",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"76": {
+			"id": 76,
+			"name": "Curmudgeons",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				90,
+				107,
+				780
+			]
+		},
+		"77": {
+			"id": 77,
+			"name": "Cursed",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"78": {
+			"id": 78,
+			"name": "Draoi Dorcha",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				107
+			]
+		},
+		"79": {
+			"id": 79,
+			"name": "Empyreans",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				66,
+				107
+			]
+		},
+		"80": {
+			"id": 80,
+			"name": "Essence Reflection",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				87,
+				98,
+				111
+			]
+		},
+		"81": {
+			"id": 81,
+			"name": "Faerie Court",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				92
+			]
+		},
+		"82": {
+			"id": 82,
+			"name": "Fomorian",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"83": {
+			"id": 83,
+			"name": "Glimmer Spirits",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				97
+			]
+		},
+		"84": {
+			"id": 84,
+			"name": "Grazer",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				100,
+				106
+			]
+		},
+		"85": {
+			"id": 85,
+			"name": "Grey Hunters",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"86": {
+			"id": 86,
+			"name": "Guardians of the Blackthorn",
+			"base_aggro_level": 100,
+			"friends": [
+				68
+			],
+			"enemies": []
+		},
+		"87": {
+			"id": 87,
+			"name": "Ixthiar Swarm",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				80,
+				93,
+				94,
+				98,
+				115
+			]
+		},
+		"88": {
+			"id": 88,
+			"name": "Koalinth",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				114
+			]
+		},
+		"89": {
+			"id": 89,
+			"name": "Krrzck",
+			"base_aggro_level": 100,
+			"friends": [
+				111
+			],
+			"enemies": [
+				69,
+				96
+			]
+		},
+		"90": {
+			"id": 90,
+			"name": "Land Sheeries",
+			"base_aggro_level": 100,
+			"friends": [
+				114
+			],
+			"enemies": [
+				76
+			]
+		},
+		"91": {
+			"id": 91,
+			"name": "Land Stalkers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				98
+			]
+		},
+		"92": {
+			"id": 92,
+			"name": "Leprechauns",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				72,
+				81
+			]
+		},
+		"93": {
+			"id": 93,
+			"name": "Minions of Balor",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				87,
+				98
+			]
+		},
+		"94": {
+			"id": 94,
+			"name": "Minions of Myrddraxis",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				87
+			]
+		},
+		"95": {
+			"id": 95,
+			"name": "Mountain Creig",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"96": {
+			"id": 96,
+			"name": "Olcasgean",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				89,
+				98,
+				111,
+				112,
+				115
+			]
+		},
+		"97": {
+			"id": 97,
+			"name": "Order of the Azure",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				83,
+				195
+			]
+		},
+		"98": {
+			"id": 98,
+			"name": "Outland Residents",
+			"base_aggro_level": 100,
+			"friends": [
+				111
+			],
+			"enemies": [
+				69,
+				74,
+				80,
+				87,
+				91,
+				93,
+				96,
+				105
+			]
+		},
+		"99": {
+			"id": 99,
+			"name": "Parthanan",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"100": {
+			"id": 100,
+			"name": "Predators of Hy Brasil",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				84
+			]
+		},
+		"101": {
+			"id": 101,
+			"name": "Queen Medb",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"102": {
+			"id": 102,
+			"name": "Rotting Root",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"103": {
+			"id": 103,
+			"name": "Seelie Court",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				113
+			]
+		},
+		"104": {
+			"id": 104,
+			"name": "Selkies",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				114
+			]
+		},
+		"105": {
+			"id": 105,
+			"name": "Servitors of Myrddraxis",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				98
+			]
+		},
+		"106": {
+			"id": 106,
+			"name": "Shriller",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				74,
+				84
+			]
+		},
+		"107": {
+			"id": 107,
+			"name": "Siabras",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				76,
+				78,
+				79
+			]
+		},
+		"108": {
+			"id": 108,
+			"name": "Soulkeepers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"109": {
+			"id": 109,
+			"name": "Suire",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				114
+			]
+		},
+		"110": {
+			"id": 110,
+			"name": "The Tree Dervishes",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"111": {
+			"id": 111,
+			"name": "The Watcher",
+			"base_aggro_level": 10,
+			"friends": [
+				89,
+				98,
+				112,
+				115
+			],
+			"enemies": [
+				80,
+				96
+			]
+		},
+		"112": {
+			"id": 112,
+			"name": "Tree of Ages",
+			"base_aggro_level": 30,
+			"friends": [
+				111
+			],
+			"enemies": [
+				96
+			]
+		},
+		"113": {
+			"id": 113,
+			"name": "Unseelie Court",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				103
+			]
+		},
+		"114": {
+			"id": 114,
+			"name": "Water Sheeries",
+			"base_aggro_level": 100,
+			"friends": [
+				90
+			],
+			"enemies": [
+				88,
+				104,
+				109
+			]
+		},
+		"115": {
+			"id": 115,
+			"name": "Z'zozicck Zhxizzckrrk",
+			"base_aggro_level": 100,
+			"friends": [
+				111
+			],
+			"enemies": [
+				87,
+				96
+			]
+		},
+		"116": {
+			"id": 116,
+			"name": "Arachite",
+			"base_aggro_level": 100,
+			"friends": [
+				139
+			],
+			"enemies": [
+				142,
+				173,
+				178
+			]
+		},
+		"117": {
+			"id": 117,
+			"name": "Berklan Tribe",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				119,
+				120,
+				150
+			]
+		},
+		"118": {
+			"id": 118,
+			"name": "Blodfelag",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"119": {
+			"id": 119,
+			"name": "Blood Reavers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				117,
+				146,
+				181
+			]
+		},
+		"120": {
+			"id": 120,
+			"name": "Cats of Aegir",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				117,
+				130,
+				149,
+				151,
+				155,
+				162,
+				176
+			]
+		},
+		"121": {
+			"id": 121,
+			"name": "Chosen of Hel",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"122": {
+			"id": 122,
+			"name": "Clan Smyg",
+			"base_aggro_level": 100,
+			"friends": [
+				179
+			],
+			"enemies": [
+				143
+			]
+		},
+		"123": {
+			"id": 123,
+			"name": "Dark Pack",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"124": {
+			"id": 124,
+			"name": "Dragonbane Svartalfar",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				154,
+				195
+			]
+		},
+		"125": {
+			"id": 125,
+			"name": "Drowned Ones",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"126": {
+			"id": 126,
+			"name": "Dryads",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				258
+			]
+		},
+		"127": {
+			"id": 127,
+			"name": "Dverge",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				148,
+				174
+			]
+		},
+		"128": {
+			"id": 128,
+			"name": "Elements of the Caldera",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				155
+			]
+		},
+		"129": {
+			"id": 129,
+			"name": "Envydrake",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"130": {
+			"id": 130,
+			"name": "Fauna of Aegir",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				120,
+				176
+			]
+		},
+		"131": {
+			"id": 131,
+			"name": "Fenrir Pack",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"132": {
+			"id": 132,
+			"name": "Fideals",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				166,
+				185
+			]
+		},
+		"133": {
+			"id": 133,
+			"name": "Finfoot Goblins",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"134": {
+			"id": 134,
+			"name": "Fire Ants",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"135": {
+			"id": 135,
+			"name": "Fire Giants",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"136": {
+			"id": 136,
+			"name": "Fire Wyrms",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				170
+			]
+		},
+		"137": {
+			"id": 137,
+			"name": "Folowers of Seithr",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"138": {
+			"id": 138,
+			"name": "Frost Giants",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"139": {
+			"id": 139,
+			"name": "Frozen Web",
+			"base_aggro_level": 100,
+			"friends": [
+				116
+			],
+			"enemies": []
+		},
+		"140": {
+			"id": 140,
+			"name": "Glacier Harskaren",
+			"base_aggro_level": 100,
+			"friends": [
+				144
+			],
+			"enemies": [
+				146,
+				181
+			]
+		},
+		"141": {
+			"id": 141,
+			"name": "Gluttonous Gorgers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"142": {
+			"id": 142,
+			"name": "Guardians of Midgard",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				116,
+				179
+			]
+		},
+		"143": {
+			"id": 143,
+			"name": "Hidden People",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				122
+			]
+		},
+		"144": {
+			"id": 144,
+			"name": "Hrimthursa",
+			"base_aggro_level": 100,
+			"friends": [
+				140
+			],
+			"enemies": [
+				146,
+				161,
+				172,
+				181
+			]
+		},
+		"145": {
+			"id": 145,
+			"name": "Iarnvidur",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"146": {
+			"id": 146,
+			"name": "Klippa Vaktaren",
+			"base_aggro_level": 100,
+			"friends": [
+				181
+			],
+			"enemies": [
+				119,
+				140,
+				144,
+				150
+			]
+		},
+		"147": {
+			"id": 147,
+			"name": "Ljossalfar",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				173
+			]
+		},
+		"148": {
+			"id": 148,
+			"name": "Lost Souls",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				127
+			]
+		},
+		"149": {
+			"id": 149,
+			"name": "Mammoth Migration",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				120
+			]
+		},
+		"150": {
+			"id": 150,
+			"name": "Morvalt Samhalle",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				117,
+				146,
+				151,
+				162,
+				172,
+				176,
+				181
+			]
+		},
+		"151": {
+			"id": 151,
+			"name": "Musslaklan Tribe",
+			"base_aggro_level": 100,
+			"friends": [
+				162
+			],
+			"enemies": [
+				120,
+				150
+			]
+		},
+		"152": {
+			"id": 152,
+			"name": "Nacken",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"153": {
+			"id": 153,
+			"name": "Obeboddoklan Tribe",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"154": {
+			"id": 154,
+			"name": "Pack Drakulv",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				124,
+				173
+			]
+		},
+		"155": {
+			"id": 155,
+			"name": "People of Dellingstad",
+			"base_aggro_level": 10,
+			"friends": [],
+			"enemies": [
+				120,
+				128
+			]
+		},
+		"156": {
+			"id": 156,
+			"name": "Plague of Aegir",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				169
+			]
+		},
+		"157": {
+			"id": 157,
+			"name": "Raukomaz",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"158": {
+			"id": 158,
+			"name": "Sapherds",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"159": {
+			"id": 159,
+			"name": "Servants of Iarnvidiur",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				172,
+				176
+			]
+		},
+		"160": {
+			"id": 160,
+			"name": "Silvered",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				23
+			]
+		},
+		"161": {
+			"id": 161,
+			"name": "Sjoalf",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				144,
+				162
+			]
+		},
+		"162": {
+			"id": 162,
+			"name": "Skalklan Tribe",
+			"base_aggro_level": 100,
+			"friends": [
+				151,
+				176
+			],
+			"enemies": [
+				120,
+				150,
+				161
+			]
+		},
+		"163": {
+			"id": 163,
+			"name": "Skogsra Shade Seekers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				172,
+				176
+			]
+		},
+		"164": {
+			"id": 164,
+			"name": "Snowshoe Bandits",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"165": {
+			"id": 165,
+			"name": "Spirits of Midgard",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"166": {
+			"id": 166,
+			"name": "Sprites",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				132
+			]
+		},
+		"167": {
+			"id": 167,
+			"name": "Svartalfar Outcasts",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				173
+			]
+		},
+		"168": {
+			"id": 168,
+			"name": "hill people",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"169": {
+			"id": 169,
+			"name": "Swarm of Aegir",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				156
+			]
+		},
+		"170": {
+			"id": 170,
+			"name": "The Cinder Drakes",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				136
+			]
+		},
+		"171": {
+			"id": 171,
+			"name": "The Condemned",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"172": {
+			"id": 172,
+			"name": "The Remnants",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				144,
+				150,
+				159,
+				163
+			]
+		},
+		"173": {
+			"id": 173,
+			"name": "The Svartalfar",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				116,
+				147,
+				154,
+				167,
+				178
+			]
+		},
+		"174": {
+			"id": 174,
+			"name": "The Unsleeping",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				127
+			]
+		},
+		"175": {
+			"id": 175,
+			"name": "Tomte",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"176": {
+			"id": 176,
+			"name": "Tradklan Tribe",
+			"base_aggro_level": 100,
+			"friends": [
+				162
+			],
+			"enemies": [
+				120,
+				130,
+				150,
+				159,
+				163
+			]
+		},
+		"177": {
+			"id": 177,
+			"name": "Unbegotten",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"178": {
+			"id": 178,
+			"name": "Varulv",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				116,
+				173,
+				184
+			]
+		},
+		"179": {
+			"id": 179,
+			"name": "Vendo",
+			"base_aggro_level": 100,
+			"friends": [
+				122
+			],
+			"enemies": [
+				142
+			]
+		},
+		"180": {
+			"id": 180,
+			"name": "Vendo Cubs",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"181": {
+			"id": 181,
+			"name": "Vind Ryttaren",
+			"base_aggro_level": 100,
+			"friends": [
+				146
+			],
+			"enemies": [
+				119,
+				140,
+				144,
+				150
+			]
+		},
+		"182": {
+			"id": 182,
+			"name": "Waiting Terror",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"183": {
+			"id": 183,
+			"name": "Wildlings",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"184": {
+			"id": 184,
+			"name": "Wolfaur",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				178
+			]
+		},
+		"185": {
+			"id": 185,
+			"name": "Woodwomen",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				132
+			]
+		},
+		"186": {
+			"id": 186,
+			"name": "Annoying Harpies",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"187": {
+			"id": 187,
+			"name": "Awakened",
+			"base_aggro_level": 100,
+			"friends": [
+				206
+			],
+			"enemies": []
+		},
+		"188": {
+			"id": 188,
+			"name": "Centaur",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"189": {
+			"id": 189,
+			"name": "Chylses Tribe",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"190": {
+			"id": 190,
+			"name": "Cyclops Hegeomai",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"191": {
+			"id": 191,
+			"name": "Demon Lords",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"192": {
+			"id": 192,
+			"name": "Destroyers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"193": {
+			"id": 193,
+			"name": "Devourer of Millions",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"194": {
+			"id": 194,
+			"name": "Dragonslayers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"195": {
+			"id": 195,
+			"name": "Dragonsworn",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				60,
+				97,
+				124
+			]
+		},
+		"196": {
+			"id": 196,
+			"name": "Eleutheros Cyclopes",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"197": {
+			"id": 197,
+			"name": "Fires of Hephaestus",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"198": {
+			"id": 198,
+			"name": "Gaderians Citizens",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"199": {
+			"id": 199,
+			"name": "Great Forge",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"200": {
+			"id": 200,
+			"name": "Guardians of An-uat",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"201": {
+			"id": 201,
+			"name": "Guardians of Paleognosis",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"202": {
+			"id": 202,
+			"name": "Hermes",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"203": {
+			"id": 203,
+			"name": "Iaculi",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"204": {
+			"id": 204,
+			"name": "Infernalists",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				212
+			]
+		},
+		"205": {
+			"id": 205,
+			"name": "Ketos",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"206": {
+			"id": 206,
+			"name": "Lords of the Undead",
+			"base_aggro_level": 40,
+			"friends": [
+				187
+			],
+			"enemies": []
+		},
+		"207": {
+			"id": 207,
+			"name": "Mau of Bastet",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"208": {
+			"id": 208,
+			"name": "Mau of Sekhmet",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"209": {
+			"id": 209,
+			"name": "Melos Alliance",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"210": {
+			"id": 210,
+			"name": "Nachelai Legion",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"211": {
+			"id": 211,
+			"name": "Naxos Society",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"212": {
+			"id": 212,
+			"name": "Necyomancers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				204
+			]
+		},
+		"213": {
+			"id": 213,
+			"name": "People In The Image of Seth",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"214": {
+			"id": 214,
+			"name": "Picculus Imps",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"215": {
+			"id": 215,
+			"name": "Pride of Mesedsubastet",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"216": {
+			"id": 216,
+			"name": "Protectors of Anubis",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"217": {
+			"id": 217,
+			"name": "Redeemed Outlaws",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				222
+			]
+		},
+		"218": {
+			"id": 218,
+			"name": "Shaitan",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"219": {
+			"id": 219,
+			"name": "Skyros Order",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"220": {
+			"id": 220,
+			"name": "Sobekite Khu",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"221": {
+			"id": 221,
+			"name": "Sobkite Khem",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"222": {
+			"id": 222,
+			"name": "Summoner Deamons",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				217
+			]
+		},
+		"223": {
+			"id": 223,
+			"name": "Traldor",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"224": {
+			"id": 224,
+			"name": "Volurgon of Vulcanus",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"225": {
+			"id": 225,
+			"name": "bandits",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"226": {
+			"id": 226,
+			"name": "barfog hobgoblins",
+			"base_aggro_level": 100,
+			"friends": [
+				2
+			],
+			"enemies": [
+				51
+			]
+		},
+		"227": {
+			"id": 227,
+			"name": "bog men",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"228": {
+			"id": 228,
+			"name": "Boggarts",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"229": {
+			"id": 229,
+			"name": "bwgan",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"230": {
+			"id": 230,
+			"name": "bwgan fishermen",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"231": {
+			"id": 231,
+			"name": "bwgwl",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"232": {
+			"id": 232,
+			"name": "Cait Sidhe",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"233": {
+			"id": 233,
+			"name": "Cerridwen",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"234": {
+			"id": 234,
+			"name": "dragon ants",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"235": {
+			"id": 235,
+			"name": "druids of southern Albion",
+			"base_aggro_level": 100,
+			"friends": [
+				35
+			],
+			"enemies": []
+		},
+		"236": {
+			"id": 236,
+			"name": "fellwoods",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				32
+			]
+		},
+		"237": {
+			"id": 237,
+			"name": "Green Witch",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"238": {
+			"id": 238,
+			"name": "wood ogres",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"239": {
+			"id": 239,
+			"name": "forest knights",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"240": {
+			"id": 240,
+			"name": "undead knights",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"241": {
+			"id": 241,
+			"name": "forest poachers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"242": {
+			"id": 242,
+			"name": "forest thieves",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"243": {
+			"id": 243,
+			"name": "Free Saracens",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				252
+			]
+		},
+		"244": {
+			"id": 244,
+			"name": "Guagaran Spawn",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"245": {
+			"id": 245,
+			"name": "gwr-drwgiaid",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"246": {
+			"id": 246,
+			"name": "heretical hermit",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"247": {
+			"id": 247,
+			"name": "Isle of Apples",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				1
+			]
+		},
+		"248": {
+			"id": 248,
+			"name": "lesser demons",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"249": {
+			"id": 249,
+			"name": "Meical",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"250": {
+			"id": 250,
+			"name": "river sprites",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"251": {
+			"id": 251,
+			"name": "shadow hunters",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"252": {
+			"id": 252,
+			"name": "slave owners",
+			"base_aggro_level": 100,
+			"friends": [
+				253
+			],
+			"enemies": [
+				243
+			]
+		},
+		"253": {
+			"id": 253,
+			"name": "Slaver's Union",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"254": {
+			"id": 254,
+			"name": "Eye",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"255": {
+			"id": 255,
+			"name": "Necromancers",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"256": {
+			"id": 256,
+			"name": "sinach",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"257": {
+			"id": 257,
+			"name": "Duegar",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"258": {
+			"id": 258,
+			"name": "forest imps",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": [
+				126
+			]
+		},
+		"259": {
+			"id": 259,
+			"name": "Unsleeping",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"260": {
+			"id": 260,
+			"name": "Winter Wretches",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"261": {
+			"id": 261,
+			"name": "People in the Image of Seth",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"262": {
+			"id": 262,
+			"name": "Obeboddoklan tribe",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"263": {
+			"id": 263,
+			"name": "Sobekite Khem",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"264": {
+			"id": 264,
+			"name": "Bounty Hunters",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"265": {
+			"id": 265,
+			"name": "Pride of Mesedsubastet",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"266": {
+			"id": 266,
+			"name": "Protectors of Anubis",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"267": {
+			"id": 267,
+			"name": "Shaitan",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"268": {
+			"id": 268,
+			"name": "Skyros Order",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"269": {
+			"id": 269,
+			"name": "Sobekite Khu",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"270": {
+			"id": 270,
+			"name": "Sobkite Khem",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"271": {
+			"id": 271,
+			"name": "Traldor",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"777": {
+			"id": 777,
+			"name": "The Fallen",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"778": {
+			"id": 778,
+			"name": "Awakened",
+			"base_aggro_level": 200,
+			"friends": [],
+			"enemies": []
+		},
+		"779": {
+			"id": 779,
+			"name": "Lords of the Undead",
+			"base_aggro_level": 200,
+			"friends": [],
+			"enemies": []
+		},
+		"780": {
+			"id": 780,
+			"name": "Freshwater Crab",
+			"base_aggro_level": 0,
+			"friends": [],
+			"enemies": [
+				76
+			]
+		},
+		"781": {
+			"id": 781,
+			"name": "Gjalpinulva",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"782": {
+			"id": 782,
+			"name": "Muire",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		},
+		"783": {
+			"id": 783,
+			"name": "Spraggons",
+			"base_aggro_level": 100,
+			"friends": [],
+			"enemies": []
+		}
+	}
+}

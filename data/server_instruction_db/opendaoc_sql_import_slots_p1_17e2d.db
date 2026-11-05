@@ -1,0 +1,320 @@
+{
+  "db_kind": "daoc_opendaoc_sql_import_slots",
+  "scope": "P1-17E2D OpenDAoC SQL DB import preparation",
+  "checkpoint": "P1_17E2D_OPENDAOC_SQL_DB_IMPORT",
+  "abstract_only": true,
+  "runtime_enabled": false,
+  "coordinate_frame_confirmed": false,
+  "source": "OpenDAoC-Database/opendaoc-db-core uploaded in Drive; runtime importer expects local .sql directory or copied files",
+  "safety": {
+    "no_runtime_spawn": true,
+    "no_teleport_apply": true,
+    "no_coordinate_frame_confirmation": true,
+    "only_parse_and_report": true
+  },
+  "opendaoc_sql_slots": [
+    {
+      "id": "opendaoc_regions",
+      "semantic_slot": "server_region_mapping",
+      "table_name_candidates": [
+        "Regions",
+        "Region"
+      ],
+      "file_candidates": [
+        "regions.sql",
+        "region.sql",
+        "Regions.sql",
+        "Region.sql"
+      ],
+      "expected_columns": [
+        "RegionID",
+        "Name",
+        "Description"
+      ],
+      "required_for": [
+        "region_id_to_server_region",
+        "dungeon_region_label"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_zonepoint",
+      "semantic_slot": "world_destination_zonepoint",
+      "table_name_candidates": [
+        "ZonePoint",
+        "DbZonePoint"
+      ],
+      "file_candidates": [
+        "zonepoint.sql",
+        "ZonePoint.sql",
+        "dbzonepoint.sql",
+        "DbZonePoint.sql"
+      ],
+      "expected_columns": [
+        "Id",
+        "TargetRegion",
+        "TargetX",
+        "TargetY",
+        "TargetZ",
+        "TargetHeading",
+        "Realm",
+        "ClassType"
+      ],
+      "required_for": [
+        "regionchange",
+        "dungeon_entry_exit",
+        "zonejump_server_truth"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_jumppoint",
+      "semantic_slot": "world_destination_jumppoint_or_custom_jump",
+      "table_name_candidates": [
+        "JumpPoint",
+        "DBJumpPoint"
+      ],
+      "file_candidates": [
+        "jumppoint.sql",
+        "JumpPoint.sql",
+        "dbjumppoint.sql",
+        "DBJumpPoint.sql"
+      ],
+      "expected_columns": [
+        "ID",
+        "Region",
+        "X",
+        "Y",
+        "Z",
+        "Heading"
+      ],
+      "required_for": [
+        "custom_jump_handlers",
+        "legacy_opendaoc_jump_points"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_startuplocation",
+      "semantic_slot": "character_startup_location",
+      "table_name_candidates": [
+        "StartupLocation",
+        "StartLocation"
+      ],
+      "file_candidates": [
+        "startuplocation.sql",
+        "StartupLocation.sql",
+        "startuplocations.sql"
+      ],
+      "expected_columns": [
+        "Region",
+        "XPos",
+        "YPos",
+        "ZPos",
+        "Heading",
+        "Realm",
+        "Class"
+      ],
+      "required_for": [
+        "new_character_spawn",
+        "tutorial_exit",
+        "realm_start"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_door",
+      "semantic_slot": "door_region_transition_or_interactive_world_object",
+      "table_name_candidates": [
+        "Door",
+        "Doors"
+      ],
+      "file_candidates": [
+        "door.sql",
+        "doors.sql",
+        "Door.sql",
+        "Doors.sql"
+      ],
+      "expected_columns": [
+        "DoorID",
+        "Region",
+        "X",
+        "Y",
+        "Z",
+        "Heading"
+      ],
+      "required_for": [
+        "dungeon_doors",
+        "keeps",
+        "interactive_static_objects"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_bindpoint",
+      "semantic_slot": "bind_respawn_points",
+      "table_name_candidates": [
+        "BindPoint",
+        "BindPoints"
+      ],
+      "file_candidates": [
+        "bindpoint.sql",
+        "bindpoints.sql",
+        "BindPoint.sql"
+      ],
+      "expected_columns": [
+        "Region",
+        "X",
+        "Y",
+        "Z",
+        "Radius"
+      ],
+      "required_for": [
+        "bind",
+        "respawn"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_mob",
+      "semantic_slot": "npc_mob_spawn_table",
+      "table_name_candidates": [
+        "Mob",
+        "Mobs"
+      ],
+      "file_candidates": [
+        "mob.sql",
+        "mobs.sql",
+        "Mob.sql"
+      ],
+      "expected_columns": [
+        "Mob_ID",
+        "Name",
+        "Region",
+        "X",
+        "Y",
+        "Z",
+        "Heading",
+        "Model"
+      ],
+      "required_for": [
+        "npc_replication",
+        "mob_spawn_debug",
+        "future_combat_targets"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_spell",
+      "semantic_slot": "spell_data_table",
+      "table_name_candidates": [
+        "Spell",
+        "Spells"
+      ],
+      "file_candidates": [
+        "spell.sql",
+        "spells.sql",
+        "Spell.sql"
+      ],
+      "expected_columns": [
+        "SpellID",
+        "Name",
+        "Type",
+        "Target",
+        "Range",
+        "CastTime",
+        "Duration"
+      ],
+      "required_for": [
+        "spell_icons",
+        "cast_ui",
+        "effect_contracts"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_style",
+      "semantic_slot": "style_data_table",
+      "table_name_candidates": [
+        "Style",
+        "Styles"
+      ],
+      "file_candidates": [
+        "style.sql",
+        "styles.sql",
+        "Style.sql"
+      ],
+      "expected_columns": [
+        "ID",
+        "Name",
+        "Spec",
+        "WeaponType",
+        "OpeningRequirementType",
+        "GrowthRate",
+        "AnimationId"
+      ],
+      "required_for": [
+        "style_ui",
+        "combat_event_display",
+        "animation_mapping"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    },
+    {
+      "id": "opendaoc_itemtemplate",
+      "semantic_slot": "item_template_table",
+      "table_name_candidates": [
+        "ItemTemplate",
+        "ItemTemplates"
+      ],
+      "file_candidates": [
+        "itemtemplate.sql",
+        "itemtemplates.sql",
+        "ItemTemplate.sql"
+      ],
+      "expected_columns": [
+        "Id_nb",
+        "Name",
+        "Model",
+        "Object_Type",
+        "Item_Type",
+        "DPS_AF",
+        "SPD_ABS"
+      ],
+      "required_for": [
+        "inventory_display",
+        "equipment_visuals",
+        "stats"
+      ],
+      "runtime_status": "pending_real_db_parse"
+    }
+  ],
+  "coverage_targets": [
+    {
+      "id": "barrows",
+      "server_region_id_candidates": [
+        20
+      ],
+      "client_zone_id_candidates": [
+        19
+      ],
+      "names": [
+        "Stonehenge Barrows",
+        "Barrows"
+      ]
+    },
+    {
+      "id": "mithra",
+      "server_region_id_candidates": [
+        21
+      ],
+      "client_zone_id_candidates": [
+        21
+      ],
+      "names": [
+        "Tomb of Mithra",
+        "Mithra"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1056 @@
+## NifReader — lecteur NIF in-engine, chemin "prebake" (GDScript).
+##
+## Architecture reprise de godotwind (MIT, (c) 2026 Liho) :
+##   en-tete -> version -> liste de blocs -> aiguillage `match` par nom de type
+##   -> arbre de blocs en memoire (puis NifConverter -> scene Godot).
+##
+## Couvre le chemin "ancien NIF" (< 10.x) auquel appartient le DAoC 4.2.2.0 :
+##   * pas de table de tailles de blocs -> on NE PEUT PAS sauter un bloc inconnu ;
+##   * chaque bloc est precede de son nom de type (chaine prefixee uint32) ;
+##   * un bloc inconnu => on s'ARRETE FORT (offset + index) plutot que desync.
+##
+## NiTriShapeData suit ta disposition CONFIRMEE (NOTE_TERRAIN §11). Les autres
+## lecteurs suivent la spec standard 4.2.2.0 (niflib) : HYPOTHESE a valider sur
+## tes fichiers. Quand un bloc casse, le rapport pointe l'offset exact a corriger.
+##
+## Le chemin Gamebryo 10.1.0.0 (table de types globale) est volontairement laisse
+## en TODO : pyffi le lit deja cote Python (NOTE_TERRAIN §11).
+class_name NifReader
+extends RefCounted
+
+var br: NifBinaryReader = null
+
+# Resultat
+var version_str: String = ""
+var version_int: int = 0
+var signature: String = ""           # "NetImmerse" | "Gamebryo"
+var blocks: Array[Dictionary] = []   # un Dictionary par bloc, cle "type"
+var roots: Array[int] = []           # indices des blocs racines (footer)
+var failed: bool = false
+var fail_reason: String = ""
+var suspect: String = ""
+var fail_offset: int = 0
+# Offset du debut du bloc en cours (longueur du nom de type).
+# Certains scripts de scan l'utilisent pour dumper le bon hexdump.
+var fail_block_start: int = 0
+var _cur_idx: int = -1
+var _cur_type: String = ""
+var _cur_block_start: int = 0
+var _num_blocks: int = 0
+var _stop_reading_early: bool = false
+
+# Garde-fous anti-desync
+const MAX_VERTICES := 200000
+const MAX_TRIANGLES := 400000
+const MAX_BLOCKS := 100000
+# Plafonds anti-emballement : tout compteur de liste lu du fichier qui depasse
+# son plafond = desync -> on abandonne le fichier au lieu de boucler.
+const MAX_PROPS := 4096
+const MAX_CHILDREN := 65536
+const MAX_TEX := 64
+
+
+func read(path: String) -> bool:
+	br = NifBinaryReader.new()
+	if not br.open(path):
+		return _fail("ouverture impossible", 0)
+
+	# --- En-tete : ligne de signature + version ---
+	var header_line := br.line_string()
+	if header_line.find("NetImmerse File Format") >= 0:
+		signature = "NetImmerse"
+	elif header_line.find("Gamebryo File Format") >= 0:
+		signature = "Gamebryo"
+	else:
+		return _fail("signature inconnue: '%s'" % header_line, 0)
+	version_str = header_line
+
+	version_int = br.u32()  # ex. 0x04020200 pour 4.2.2.0
+
+	# Branche par famille de version.
+	if version_int >= 0x0A000000:
+		# Gamebryo 10.x : table de types globale -> non implemente ici.
+		var off := br.pos()
+		return _fail("version Gamebryo 10.x (0x%08X) : passer par le chemin pyffi (NOTE_TERRAIN §11)" % version_int, off)
+
+	# --- Chemin ancien NIF (DAoC 4.2.2.0) : num_blocks dans le header ---
+	var num_blocks := br.u32()
+	_num_blocks = num_blocks
+	if num_blocks < 0 or num_blocks > MAX_BLOCKS:
+		return _fail("num_blocks absurde (%d)" % num_blocks, br.pos())
+
+	for i in range(num_blocks):
+		if br.eof():
+			return _fail("fin de fichier prematuree au bloc %d/%d (desync amont). %s" % [i, num_blocks, _trace()], br.pos())
+		_cur_block_start = br.pos()
+		var type_name := br.sized_string()
+		if not _looks_like_type(type_name):
+			suspect = str(blocks[blocks.size() - 1].get("type", "?")) if blocks.size() > 0 else "?"
+			return _fail("nom de type invalide au bloc %d (='%s') — desync dans le bloc precedent. %s" % [i, type_name.c_escape(), _trace()], br.pos())
+		_cur_idx = i
+		_cur_type = type_name
+		var block := _read_block(type_name, i)
+		if failed:
+			if br != null:
+				br.close()
+			return false
+		block["type"] = type_name
+		block["index"] = i
+		blocks.append(block)
+
+		# Certains blocs d'effet/particules 4.x peuvent etre en fin de chaine utile
+		# sans layout fiable. Si un lecteur ignorable demande un arret doux, on garde
+		# les blocs deja lus pour permettre au converter de sortir la geometrie statique.
+		if _stop_reading_early:
+			br.close()
+			return true
+
+	# --- Footer : racines (guarde) ---
+	if not br.eof():
+		var num_roots := br.u32()
+		if num_roots >= 0 and num_roots < 4096:
+			for _r in range(num_roots):
+				roots.append(br.i32())
+
+	br.close()
+	return true
+
+
+# --- Aiguillage par type de bloc ---
+func _read_block(type_name: String, idx: int) -> Dictionary:
+	match type_name:
+		"NiNode":
+			return _read_ninode()
+		"NiTriShape", "NiTriStrips":
+			return _read_trishape()
+		"NiTriShapeData", "NiTriStripsData":
+			return _read_trishapedata(type_name)
+		"NiMaterialProperty":
+			return _read_material()
+		"NiTexturingProperty":
+			return _read_texturing()
+		"NiSourceTexture":
+			return _read_source_texture()
+		"NiZBufferProperty":
+			return _read_zbuffer()
+		"NiAlphaProperty":
+			return _read_alpha()
+		"NiVertexColorProperty":
+			return _read_vertexcolor()
+		"NiStencilProperty":
+			return _read_stencil()
+		"NiSpecularProperty", "NiShadeProperty", "NiWireframeProperty", "NiDitherProperty":
+			return _read_simple_property(type_name)
+		"NiLODNode":
+			return _read_lodnode()
+		"NiSwitchNode", "NiBillboardNode":
+			return _read_ninode()
+		"NiStringExtraData":
+			return _read_string_extra_data()
+		"NiExtraData", "NiTextKeyExtraData", "NiVertWeightsExtraData", "NiBinaryExtraData":
+			return _read_generic_extra_data()
+		"NiParticleSystemController":
+			return _read_particle_system_controller()
+		"NiParticleColorModifier", "NiParticleGrowFade", "NiParticleRotation", "NiParticleBomb", "NiGravity":
+			return _read_ignorable_particle_block(type_name)
+		"NiKeyframeController", "NiVisController", "NiAlphaController", "NiMaterialColorController", "NiLookAtController", "NiRollController":
+			return _read_ctrl_data()
+		"NiUVController":
+			return _read_uv_controller()
+		"NiGeomMorpherController":
+			return _read_geom_morpher_controller()
+		"NiFlipController":
+			return _read_flip_controller()
+		"NiPathController":
+			return _read_path_controller()
+		"NiKeyframeData":
+			return _read_keyframe_data()
+		"NiFloatData":
+			return _read_simple_keydata(1)
+		"NiPosData":
+			return _read_simple_keydata(3)
+		"NiColorData":
+			return _read_simple_keydata(4)
+		"NiUVData":
+			return _read_uv_data()
+		"NiMorphData":
+			return _read_morph_data()
+		"NiTextureEffect":
+			return _read_texture_effect()
+		"NiCamera":
+			return _read_camera()
+		"NiAmbientLight", "NiDirectionalLight":
+			return _read_light(false)
+		"NiPointLight", "NiSpotLight":
+			return _read_light(true)
+		"NiParticles", "NiAutoNormalParticles", "NiRotatingParticles", "NiParticleSystem":
+			return _read_trishape()
+		"NiParticlesData", "NiAutoNormalParticlesData":
+			return _read_particles_data(false)
+		"NiRotatingParticlesData":
+			return _read_particles_data(true)
+		"NiPixelData":
+			return _read_pixel_data()
+		"NiPalette":
+			return _read_palette()
+		_:
+			# Bloc inconnu : impossible de sauter sans desync -> on s'arrete FORT.
+			suspect = type_name
+			_fail("bloc non gere '%s' (bloc %d) — ajoute son lecteur dans _read_block(). %s" % [type_name, idx, _trace()], br.pos())
+			return {}
+
+
+# --- NiObjectNET : socle commun (nom, extra data, controleur) ---
+func _read_objectnet(b: Dictionary) -> void:
+	b["name"] = br.sized_string()
+	b["extra_data_ref"] = br.i32()   # 4.x : ref unique
+	b["controller_ref"] = br.i32()
+
+
+# --- NiAVObject : transform + proprietes + bbox ---
+func _read_avobject(b: Dictionary) -> void:
+	_read_objectnet(b)
+	b["flags"] = br.u16()
+	var translation := br.vec3()
+	var rotation := br.matrix33()
+	var scale := br.f32()
+	b["velocity"] = br.vec3()         # present <= 4.2.2.0 (spec standard, A VALIDER)
+	# Transform BRUTE en espace NIF (non convertie). Le convertisseur l'accumule
+	# le long de l'arbre puis convertit les sommets finaux via coordinate_system.
+	b["nif_transform"] = Transform3D(rotation.scaled(Vector3(scale, scale, scale)), translation)
+	var num_props := br.u32()
+	if not _guard(num_props, MAX_PROPS, "num_properties"):
+		return
+	var props: Array[int] = []
+	for _p in range(num_props):
+		props.append(br.i32())
+	b["property_refs"] = props
+	# Has Bounding Box : booleen 1 OCTET en 4.2.2.0 (NOTE_TERRAIN §11), PAS un u32.
+	var has_bb := br.boolb()
+	if has_bb:
+		_read_bounding_volume()
+
+
+func _read_ninode() -> Dictionary:
+	var b := {}
+	_read_avobject(b)
+	if failed:
+		return b
+	var n_children := br.u32()
+	if not _guard(n_children, MAX_CHILDREN, "num_children"):
+		return b
+	var children: Array[int] = []
+	for _c in range(n_children):
+		children.append(br.i32())
+	b["children"] = children
+	var n_effects := br.u32()
+	if not _guard(n_effects, MAX_CHILDREN, "num_effects"):
+		return b
+	for _e in range(n_effects):
+		br.i32()             # effect refs (ignores)
+	return b
+
+
+func _read_trishape() -> Dictionary:
+	var b := {}
+	_read_avobject(b)
+	if failed:
+		return b
+	b["data_ref"] = br.i32()
+	b["skin_instance_ref"] = br.i32()
+	return b
+
+
+## Base NiGeometryData 4.x : sommets/normales/couleurs/UV, SANS topologie.
+## Utilisee par NiTriShapeData ET par NiParticlesData. Le bug V3 venait du fait
+## qu'on lisait les particules comme des triangles, donc on avalait tout le reste
+## du fichier.
+func _read_geometrydata_base() -> Dictionary:
+	var b := {}
+	var num_vertices := br.u16()
+	b["num_vertices"] = num_vertices
+	if num_vertices > MAX_VERTICES:
+		_fail("num_vertices=%d > max — desync probable" % num_vertices, br.pos())
+		return b
+
+	var verts := PackedVector3Array()
+	if br.boolb():
+		verts.resize(num_vertices)
+		for i in range(num_vertices):
+			verts[i] = br.vec3()
+	b["vertices"] = verts
+
+	var normals := PackedVector3Array()
+	if br.boolb():
+		normals.resize(num_vertices)
+		for i in range(num_vertices):
+			normals[i] = br.vec3()
+	b["normals"] = normals
+
+	b["center"] = br.vec3()
+	b["radius"] = br.f32()
+
+	var colors := PackedColorArray()
+	if br.boolb():
+		colors.resize(num_vertices)
+		for i in range(num_vertices):
+			colors[i] = br.color4()
+	b["colors"] = colors
+
+	# num_uv_sets : 6 bits de poids faible = nombre de jeux d'UV.
+	var num_uv_raw := br.u16()
+	var num_uv := num_uv_raw & 0x3F
+	var uvs := PackedVector2Array()
+	for s in range(num_uv):
+		if s == 0:
+			uvs.resize(num_vertices)
+			for i in range(num_vertices):
+				uvs[i] = Vector2(br.f32(), br.f32())
+		else:
+			# jeux d'UV supplementaires : lus pour rester synchro, non utilises.
+			for i in range(num_vertices):
+				br.f32(); br.f32()
+	b["uvs"] = uvs
+	return b
+
+
+## NiTriShapeData — DISPOSITION CONFIRMEE (NOTE_TERRAIN §11).
+## Booleens sur 1 octet ; pas de flag has_uv/has_triangles separe.
+func _read_trishapedata(type_name: String) -> Dictionary:
+	var b := _read_geometrydata_base()
+	if failed:
+		return b
+
+	# --- Triangles ---
+	var indices := PackedInt32Array()
+	if type_name == "NiTriShapeData":
+		var num_triangles := br.u16()
+		if num_triangles > MAX_TRIANGLES:
+			_fail("num_triangles=%d > max — desync probable" % num_triangles, br.pos())
+			return b
+		br.u32()  # num_triangle_points (= num_triangles*3), redondant
+		indices.resize(num_triangles * 3)
+		for t in range(num_triangles):
+			indices[t * 3 + 0] = br.u16()
+			indices[t * 3 + 1] = br.u16()
+			indices[t * 3 + 2] = br.u16()
+		# Match groups : UNIQUEMENT pour NiTriShapeData (pas les strips).
+		var num_match := br.u16()
+		for _g in range(num_match):
+			var cnt := br.u16()
+			for _k in range(cnt):
+				br.u16()
+	else:
+		# NiTriStripsData (4.x) : PAS de flag has_points (uniquement en 10.x+),
+		# les strips sont TOUJOURS presents ; PAS de match groups. (cf. godotwind)
+		var _num_triangles := br.u16()  # num_triangles total (info, ignore)
+		var num_strips := br.u16()
+		var strip_lengths: Array[int] = []
+		for _s in range(num_strips):
+			strip_lengths.append(br.u16())
+		for s in range(num_strips):
+			var strip := PackedInt32Array()
+			strip.resize(strip_lengths[s])
+			for k in range(strip_lengths[s]):
+				strip[k] = br.u16()
+			indices.append_array(_destrip(strip))
+
+	b["indices"] = indices
+
+	# V5 : certains NIF DAoC 4.1/4.2 ont une variante de queue NiTriShapeData /
+	# NiTriStripsData qui n'est pas encore parfaitement decrite. Le symptome est
+	# exactement celui vu apres V4 : le bloc suivant est lu comme un nom vide ou
+	# invalide, avec NiTriShapeData/NiTriStripsData comme dernier suspect.
+	# Pour le viewer statique, la geometrie utile est deja chargee ici ; on se
+	# recale donc au prochain header Ni* au lieu de perdre tout le modele.
+	_soft_resync_after_geometry(type_name)
+	return b
+
+## Convertit une bande de triangles (triangle strip) en triangles independants.
+func _destrip(strip: PackedInt32Array) -> PackedInt32Array:
+	var out := PackedInt32Array()
+	for i in range(strip.size() - 2):
+		var a := strip[i]
+		var bb := strip[i + 1]
+		var c := strip[i + 2]
+		if a == bb or bb == c or a == c:
+			continue
+		if i % 2 == 0:
+			out.append(a); out.append(bb); out.append(c)
+		else:
+			out.append(a); out.append(c); out.append(bb)
+	return out
+
+
+func _read_material() -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	b["flags"] = br.u16()
+	b["ambient"] = _color3()
+	b["diffuse"] = _color3()
+	b["specular"] = _color3()
+	b["emissive"] = _color3()
+	b["glossiness"] = br.f32()
+	b["alpha"] = br.f32()
+	return b
+
+
+func _read_texturing() -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	b["flags"] = br.u16()
+	b["apply_mode"] = br.u32()
+	var tex_count := br.u32()
+	if not _guard(tex_count, MAX_TEX, "texture_count"):
+		return b
+	var base_source := -1
+	for t in range(tex_count):
+		var has_tex := br.boolb()
+		if has_tex:
+			var src := br.i32()
+			br.u32()   # clamp mode
+			br.u32()   # filter mode
+			br.u32()   # uv set
+			br.u16()   # ps2 L
+			br.u16()   # ps2 K
+			# "Unknown1" (ushort) : present UNIQUEMENT <= 4.1.0.12. Conditionne a la
+			# version reelle du fichier (les NIF DAoC vont de 4.1.0.12 a 4.2.2.0).
+			if version_int <= 0x0401000C:
+				br.u16()   # unknown1 (4.1.0.12 et anterieurs)
+			# Texture de bump (slot 5) : luma bias (2 floats) + matrice de bump (4 floats).
+			if t == 5:
+				br.f32(); br.f32()
+				br.f32(); br.f32(); br.f32(); br.f32()
+			if t == 0:
+				base_source = src   # texture de base = slot 0
+	b["base_source_ref"] = base_source
+	return b
+
+
+func _read_source_texture() -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	var use_external := br.u8()
+	if use_external == 1:
+		b["file_name"] = br.sized_string()   # nom du .dds/.tga (sans chemin, voir §11)
+	else:
+		br.u8()                              # unknown byte
+		b["pixel_data_ref"] = br.i32()       # NiPixelData embarque (rare ici)
+		b["file_name"] = ""
+	br.u32()   # pixel layout
+	br.u32()   # use mipmaps
+	br.u32()   # alpha format
+	br.u8()    # is static
+	return b
+
+
+## Proprietes "simples" : NiObjectNET + flags u16. (NiSpecular/Shade/Wireframe/Dither.)
+func _read_simple_property(_type_name: String) -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	b["flags"] = br.u16()
+	return b
+
+
+## NiZBufferProperty : Flags(u16) + Function(u32) [present >= 4.1.0.12].
+func _read_zbuffer() -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	b["flags"] = br.u16()
+	if version_int >= 0x0401000C:
+		br.u32()   # Function (ZCompareMode)
+	return b
+
+
+## NiAlphaProperty : Flags(u16) + Threshold(1 octet).
+func _read_alpha() -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	b["flags"] = br.u16()
+	br.u8()        # Threshold
+	return b
+
+
+## NiVertexColorProperty : Flags(u16) + Vertex Mode(u32) + Lighting Mode(u32)
+## [les deux uint presents <= 20.0.0.5, donc pour toutes nos versions].
+func _read_vertexcolor() -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	b["flags"] = br.u16()
+	br.u32()       # Vertex Mode
+	br.u32()       # Lighting Mode
+	return b
+
+
+## NiStencilProperty (ancien layout <= 10.0.1.2) : PAS de Flags u16 ; commence par
+## Stencil Enabled(1 octet) puis 7 uint. Best-effort, A VALIDER si rencontre.
+func _read_stencil() -> Dictionary:
+	var b := {}
+	_read_objectnet(b)
+	b["flags"] = br.u16()   # MANQUAIT : flags (2 octets) avant enabled
+	br.u8()        # Stencil Enabled
+	br.u32()       # Stencil Function
+	br.u32()       # Stencil Ref
+	br.u32()       # Stencil Mask
+	br.u32()       # Fail Action
+	br.u32()       # Z Fail Action
+	br.u32()       # Pass Action
+	br.u32()       # Draw Mode
+	return b
+
+
+## NiLODNode (DAoC 4.x) : derive de NiSwitchNode, pas seulement de NiNode.
+##
+## Les NIF DAoC observes ont, apres les enfants/effects de NiNode :
+##   active_child/ref u32 + center vec3 + radius/extent f32
+## puis directement le header du bloc suivant.
+## L'ancien lecteur sautait seulement vec3 : il tombait donc au milieu de ces
+## 20 octets et lisait des floats comme un nom de type (ex. "AD*", "42").
+##
+## Comme les vieux NIF n'ont pas de table de tailles de blocs, on reste prudent :
+## on essaie plusieurs queues plausibles et on retient celle qui aligne exactement
+## le prochain header de type. Pour le viewer statique, ces champs LOD ne servent
+## pas encore, donc l'objectif prioritaire est la synchronisation.
+func _read_lodnode() -> Dictionary:
+	var b := {}
+	_read_avobject(b)
+	if failed:
+		return b
+
+	var n_children := br.u32()
+	if not _guard(n_children, MAX_CHILDREN, "num_children"):
+		return b
+	var children: Array[int] = []
+	for _c in range(n_children):
+		children.append(br.i32())
+	b["children"] = children
+
+	var n_effects := br.u32()
+	if not _guard(n_effects, MAX_CHILDREN, "num_effects"):
+		return b
+	for _e in range(n_effects):
+		br.i32()
+
+	var tail_start := br.pos()
+	var candidates := [20, 16, 12, 24, 28, 32]
+	for size in candidates:
+		br.seek(tail_start + size)
+		if _next_is_type_header():
+			b["lod_tail_size"] = size
+			return b
+
+	# Variante standard possible : center vec3 + num_levels u32 + ranges near/far.
+	br.seek(tail_start + 12)
+	if br.pos() + 4 <= br.length():
+		var n_levels := br.u32()
+		if n_levels >= 0 and n_levels <= 64:
+			br.seek(tail_start + 12 + 4 + n_levels * 8)
+			if _next_is_type_header():
+				b["lod_tail_size"] = 16 + n_levels * 8
+				b["lod_levels"] = n_levels
+				return b
+
+	# Dernier recours diagnostic : resynchroniser vers le prochain vrai type Ni*.
+	br.seek(tail_start)
+	if _resync_to_next_type_header("NiLODNode", 128):
+		b["lod_tail_size"] = br.pos() - tail_start
+		b["lod_resynced"] = true
+		return b
+
+	_fail("NiLODNode: impossible de retrouver le prochain header de bloc apres offset 0x%X" % tail_start, tail_start)
+	return b
+
+
+## NiStringExtraData : NiExtraData (next ref + bytes_remaining) + chaine. (cf. godotwind)
+func _read_string_extra_data() -> Dictionary:
+	var b := {}
+	b["next_extra_data_ref"] = br.i32()
+	var _bytes_remaining := br.u32()
+	b["string_data"] = br.sized_string()
+	return b
+
+
+## Extra data generique : next ref + bytes_remaining + on saute les donnees
+## (bytes_remaining donne la taille -> sautable sans desync).
+func _read_generic_extra_data() -> Dictionary:
+	var b := {}
+	b["next_extra_data_ref"] = br.i32()
+	var bytes_remaining := br.u32()
+	if bytes_remaining > 0 and bytes_remaining < 16777216:
+		br.skip(bytes_remaining)
+	return b
+
+
+## NiTimeController : base commune a tous les controleurs. (cf. godotwind)
+func _read_time_controller(b: Dictionary) -> void:
+	b["next_controller_ref"] = br.i32()
+	b["ctrl_flags"] = br.u16()
+	br.f32()   # frequency
+	br.f32()   # phase
+	br.f32()   # start time
+	br.f32()   # stop time
+	b["target_ref"] = br.i32()
+
+
+## Controleurs "base + data ref" : Keyframe / Vis / Alpha / MaterialColor / LookAt / Roll.
+func _read_ctrl_data() -> Dictionary:
+	var b := {}
+	_read_time_controller(b)
+	b["data_ref"] = br.i32()
+	return b
+
+
+## NiParticleSystemController : pour le viewer statique, on ignore la simulation.
+##
+## Les variantes DAoC 4.1/4.2 n'ont pas toutes exactement la meme queue.
+## Lire seulement NiTimeController et esperer tomber juste desynchronise certains
+## modeles (brghouse/demonportal/BAvTeleporter). Ici on traite ce bloc comme
+## ignorable et on saute jusqu'au prochain vrai header de bloc Ni*.
+func _read_particle_system_controller() -> Dictionary:
+	return _read_ignorable_particle_block("NiParticleSystemController")
+
+
+## Blocs particules / forces ignores pour le rendu statique.
+## Sans table de tailles, le seul saut fiable en vieux NIF est la resynchro vers
+## le prochain header de type. C'est volontairement reserve aux blocs non
+## geometriques qui bloquent les derniers modeles 4.x.
+func _read_ignorable_particle_block(type_name: String) -> Dictionary:
+	var b := {}
+	var start := br.pos()
+	# Les effets 4.x peuvent etre tres longs ; on scanne jusqu'a la fin du fichier
+	# plutot que de rester limite a 128 Ko.
+	var max_scan := maxi(4096, br.length() - start)
+	if _resync_to_next_type_header(type_name, max_scan):
+		b["ignored"] = true
+		b["skipped_bytes"] = br.pos() - start
+		return b
+
+	# Fallback volontairement doux : si l'effet est illisible mais non geometrique,
+	# on garde le modele statique deja parse au lieu de jeter tout le NIF.
+	push_warning("NIF SOFT-TRUNCATE: %s illisible apres 0x%X ; conservation des blocs deja lus" % [type_name, start])
+	_stop_reading_early = true
+	br.seek(br.length())
+	b["ignored"] = true
+	b["soft_truncated"] = true
+	return b
+
+
+## NiUVController : base + uv_set(u16) + data ref.
+func _read_uv_controller() -> Dictionary:
+	var b := {}
+	_read_time_controller(b)
+	br.u16()   # uv set
+	b["data_ref"] = br.i32()
+	return b
+
+
+## NiGeomMorpherController : base + data ref + always_update(1 octet).
+func _read_geom_morpher_controller() -> Dictionary:
+	var b := {}
+	_read_time_controller(b)
+	b["data_ref"] = br.i32()
+	br.u8()    # always update
+	return b
+
+
+## NiFlipController : base + texture_slot + 2 floats + liste de sources.
+func _read_flip_controller() -> Dictionary:
+	var b := {}
+	_read_time_controller(b)
+	br.u32()   # texture slot
+	br.f32()   # time start (Morrowind)
+	br.f32()   # delta
+	var n := br.u32()
+	if not _guard(n, MAX_CHILDREN, "flip num_sources"):
+		return b
+	for _i in range(n):
+		br.i32()
+	return b
+
+
+## NiPathController : base + champs de trajectoire.
+func _read_path_controller() -> Dictionary:
+	var b := {}
+	_read_time_controller(b)
+	br.i32()   # bank direction
+	br.f32()   # max bank angle
+	br.f32()   # smoothing
+	br.u16()   # follow axis (s16)
+	br.i32()   # path data ref
+	br.i32()   # percent data ref
+	return b
+
+
+func _color3() -> Color:
+	return Color(br.f32(), br.f32(), br.f32(), 1.0)
+
+
+# === Blocs "data" (clés d'animation) — base commune _read_key_group ===
+# Types d'interpolation : 1=LINEAR, 2=QUADRATIC, 3=TCB, 4=XYZ, 5=CONSTANT.
+
+## Lit num_keys clés ; value_size 1=float, 3=vec3, 4=quaternion.
+func _read_key_group(num_keys: int, key_type: int, value_size: int) -> void:
+	if not _guard(num_keys, MAX_VERTICES, "num_keys"):
+		return   # plafond central : protege TOUS les blocs de cles d'un emballement
+	for _i in range(num_keys):
+		br.f32()  # time
+		_read_key_value(value_size)
+		if key_type == 2:      # QUADRATIC : forward + backward
+			_read_key_value(value_size)
+			_read_key_value(value_size)
+		elif key_type == 3:    # TCB : tension, continuity, bias
+			br.f32(); br.f32(); br.f32()
+
+
+func _read_key_value(value_size: int) -> void:
+	if value_size == 1:
+		br.f32()
+	elif value_size == 3:
+		br.vec3()
+	elif value_size == 4:
+		br.f32(); br.f32(); br.f32(); br.f32()   # quaternion
+
+
+## NiFloatData(size 1) / NiPosData(size 3) / NiColorData(size 4).
+func _read_simple_keydata(value_size: int) -> Dictionary:
+	var n := br.u32()
+	if not _guard(n, MAX_VERTICES, "num_keys"):
+		return {}
+	if n > 0:
+		var t := br.u32()
+		_read_key_group(n, t, value_size)
+	return {}
+
+
+## Un groupe de clés flottantes prefixe par son compte (pour NiUVData).
+func _read_float_key_map() -> void:
+	var n := br.u32()
+	if n == 0:
+		return
+	var t := br.u32()
+	_read_key_group(n, t, 1)
+
+
+## NiKeyframeData : clés rotation + (XYZ) + translation + echelle.
+func _read_keyframe_data() -> Dictionary:
+	var num_rot := br.u32()
+	if not _guard(num_rot, MAX_VERTICES, "num_rot_keys"):
+		return {}
+	if num_rot > 0:
+		var rot_type := br.u32()
+		_read_key_group(num_rot, rot_type, 4)
+		if rot_type == 4:  # XYZ : 3 axes de clés flottantes
+			_read_float_key_map()
+			_read_float_key_map()
+			_read_float_key_map()
+	var num_trans := br.u32()
+	if not _guard(num_trans, MAX_VERTICES, "num_trans_keys"):
+		return {}
+	if num_trans > 0:
+		_read_key_group(num_trans, br.u32(), 3)
+	var num_scale := br.u32()
+	if not _guard(num_scale, MAX_VERTICES, "num_scale_keys"):
+		return {}
+	if num_scale > 0:
+		_read_key_group(num_scale, br.u32(), 1)
+	_resync_to_next_type_header("NiKeyframeData")
+	return {}
+
+
+## NiUVData : 4 groupes de clés flottantes (U/V translation, U/V echelle).
+func _read_uv_data() -> Dictionary:
+	_read_float_key_map()
+	_read_float_key_map()
+	_read_float_key_map()
+	_read_float_key_map()
+	return {}
+
+
+## NiMorphData : num_morphs + num_vertices + relative_targets, puis par morph
+## un groupe de clés (type TOUJOURS lu) + un offset par sommet.
+func _read_morph_data() -> Dictionary:
+	var num_morphs := br.u32()
+	var num_vertices := br.u32()
+	if not _guard(num_morphs, MAX_CHILDREN, "num_morphs") or not _guard(num_vertices, MAX_VERTICES, "morph_verts"):
+		return {}
+	br.u8()  # relative targets
+	for _m in range(num_morphs):
+		var n := br.u32()
+		var t := br.u32()   # type toujours lu pour les morphs
+		if n > 0:
+			_read_key_group(n, t, 1)
+		for _v in range(num_vertices):
+			br.vec3()
+	return {}
+
+
+# === Lumieres & effets ===
+func _read_dynamic_effect(b: Dictionary) -> void:
+	_read_avobject(b)
+	if failed:
+		return
+	# Important DAoC 4.x : dans ces NIF NetImmerse, NiDynamicEffect ne porte pas
+	# ici la liste affected_nodes lue par le patch precedent. Lire un u32 a cet
+	# endroit avalait le float dimmer (= 1.0 / 0x3F800000) des NiLight et cassait
+	# cotssign / HCelttreetower. Les affected nodes sont absents ou geres ailleurs
+	# dans cette famille de fichiers.
+
+
+## NiAmbientLight/NiDirectionalLight (point=false) ; NiPointLight/NiSpotLight (point=true).
+func _read_light(point: bool) -> Dictionary:
+	var b := {}
+	_read_dynamic_effect(b)
+	if failed:
+		return b
+	br.f32()                 # dimmer
+	_color3(); _color3(); _color3()   # ambient / diffuse / specular
+	if point:
+		br.f32(); br.f32(); br.f32()  # constant / linear / quadratic atten
+	_resync_to_next_type_header("Light")
+	return b
+
+
+## NiCamera : frustum + viewport + lod_adjust + scene ptr (+ champ >= 4.2.1.0).
+func _read_camera() -> Dictionary:
+	var b := {}
+	_read_avobject(b)
+	if failed:
+		return b
+	for _i in range(6):
+		br.f32()   # frustum L/R/T/B/near/far
+	for _i in range(4):
+		br.f32()   # viewport L/R/T/B
+	br.f32()       # lod adjust
+	br.u32()       # scene pointer (inutilise)
+	if version_int >= 0x04020100:   # uniquement >= 4.2.1.0
+		br.u32()
+	_resync_to_next_type_header("NiCamera")
+	return b
+
+
+## NiTextureEffect : matrice projection + champs, avec conditionnels de version.
+func _read_texture_effect() -> Dictionary:
+	var b := {}
+	_read_dynamic_effect(b)
+	if failed:
+		return b
+	br.matrix33()  # model projection matrix
+	br.vec3()      # model projection translation
+	br.u32(); br.u32(); br.u32(); br.u32()   # filtering / clamping / type / coord gen
+	br.i32()       # source texture ref
+	br.boolb()     # clipping plane enable (1 octet pour nos versions)
+	br.vec3(); br.f32()   # clipping plane (normale + distance)
+	br.u32()       # PS2 (<= 10.2.0.0)
+	if version_int <= 0x0401000C:   # unknown short, uniquement <= 4.1.0.12
+		br.u16()
+	_resync_to_next_type_header("NiTextureEffect")
+	return b
+
+
+## NiParticlesData / NiAutoNormalParticlesData / NiRotatingParticlesData.
+## Contrairement a NiTriShapeData, ces blocs n'ont PAS de liste de triangles :
+## ils heritent de NiGeometryData puis ajoutent seulement des champs particules.
+func _read_particles_data(rotating: bool) -> Dictionary:
+	var b := _read_geometrydata_base()
+	if failed:
+		return b
+
+	var num_verts: int = int(b.get("num_vertices", 0))
+
+	# Si le prochain bloc commence deja ici, certains exports DAoC n'ont pas de
+	# queue particule exploitable : c'est valide pour notre rendu statique.
+	if _next_is_type_header():
+		return b
+
+	var extra_start := br.pos()
+
+	# Queue standard ancienne : num_particles, radius, num_active, sizes optionnelles,
+	# puis rotations optionnelles pour NiRotatingParticlesData.
+	if br.pos() + 8 <= br.length():
+		var num_particles := br.u16()
+		b["num_particles"] = num_particles
+		b["particle_radius"] = br.f32()
+		b["num_active"] = br.u16()
+
+		if not _next_is_type_header() and br.pos() < br.length():
+			var has_sizes := br.boolb()
+			if has_sizes:
+				var count := num_verts
+				if count >= 0 and count <= MAX_VERTICES and br.pos() + count * 4 <= br.length():
+					for _i in range(count):
+						br.f32()
+				else:
+					br.seek(extra_start)
+
+		if rotating and not _next_is_type_header() and br.pos() < br.length():
+			var has_rotations := br.boolb()
+			if has_rotations:
+				var count := num_verts
+				if count >= 0 and count <= MAX_VERTICES and br.pos() + count * 16 <= br.length():
+					br.skip(count * 16)
+				else:
+					br.seek(extra_start)
+
+	# On se recale au bloc suivant. Si on n'y arrive pas, ne pas condamner tout le
+	# modele : ces blocs sont des particules/FX, pas la geometrie principale.
+	if not _resync_to_next_type_header("NiParticlesData", maxi(4096, br.length() - br.pos())):
+		push_warning("NIF SOFT-TRUNCATE: NiParticlesData illisible apres 0x%X ; conservation des blocs deja lus" % extra_start)
+		_stop_reading_early = true
+		br.seek(br.length())
+
+	return b
+
+## NiPixelData : format + masques + mipmaps + donnees brutes (taille auto -> sautable).
+func _read_pixel_data() -> Dictionary:
+	br.u32()                 # format
+	for _i in range(4):
+		br.u32()             # color masks
+	br.u32()                 # bits per pixel
+	br.u32(); br.u32()       # compare bits
+	br.i32()                 # palette ref
+	var num_mipmaps := br.u32()
+	br.u32()                 # bytes per pixel
+	if _guard(num_mipmaps, MAX_CHILDREN, "num_mipmaps"):
+		for _i in range(num_mipmaps):
+			br.u32(); br.u32(); br.u32()   # width / height / offset
+	var num_pixels := br.u32()
+	if num_pixels > 0 and num_pixels < 67108864:
+		br.skip(num_pixels)
+	return {}
+
+
+## NiPalette : flag alpha + nb d'entrees + entrees RGBA.
+func _read_palette() -> Dictionary:
+	br.u8()                  # use alpha
+	var n := br.u32()
+	if _guard(n, 4096, "palette_entries"):
+		for _i in range(n):
+			br.u32()
+	return {}
+
+
+## Bounding volume TYPE (u32) + donnees selon le type. (cf. godotwind)
+## C'etait le gros bug : la bounding box n'est PAS une boite fixe, elle est typee.
+func _read_bounding_volume() -> void:
+	var bv_type := br.u32()
+	match bv_type:
+		0:   # SPHERE : center + radius
+			br.vec3(); br.f32()
+		1:   # BOX : center + axes(3x3) + extents
+			br.vec3(); br.matrix33(); br.vec3()
+		2:   # CAPSULE : center + axis + extent + radius
+			br.vec3(); br.vec3(); br.f32(); br.f32()
+		3:   # LOZENGE : radius + 2 extents + center + 2 axes
+			br.f32(); br.f32(); br.f32(); br.vec3(); br.vec3(); br.vec3()
+		4:   # UNION : count + sous-volumes recursifs
+			var n := br.u32()
+			if _guard(n, MAX_CHILDREN, "bv_union_count"):
+				for _i in range(n):
+					_read_bounding_volume()
+		5:   # HALFSPACE : plan(4) + origine(3)
+			br.f32(); br.f32(); br.f32(); br.f32(); br.vec3()
+		0xFFFFFFFF:  # BASE : aucune donnee
+			pass
+		_:
+			# Type inconnu : on ne peut pas sauter sans risque -> on signale.
+			failed = true
+			suspect = _cur_type
+			fail_offset = br.pos()
+			fail_reason = "bounding volume type inconnu %d en lisant '%s' @ 0x%X" % [bv_type, _cur_type, br.pos()]
+			push_error("NIF: " + fail_reason)
+
+
+## Resynchronisation douce apres un bloc de geometrie triangulee.
+## Reserve aux vieux NIF DAoC 4.x sans table de tailles : on ne peut pas
+## connaitre la taille exacte du bloc a priori. Si le layout local varie,
+## on prefere conserver le mesh deja lu et reprendre au prochain header Ni*.
+func _soft_resync_after_geometry(context: String) -> void:
+	if failed:
+		return
+	# Si c'est le dernier bloc, inutile de chercher un nouveau header.
+	if _cur_idx >= _num_blocks - 1:
+		return
+	if _next_is_type_header():
+		return
+
+	var start := br.pos()
+	var max_scan := maxi(4096, br.length() - start)
+	if _resync_to_next_type_header(context, max_scan):
+		return
+
+	# Aucun header retrouve : on garde tout ce qui a deja ete lu. C'est mieux
+	# qu'un echec dur pour un asset de decor, surtout quand le mesh courant existe.
+	push_warning("NIF SOFT-TRUNCATE: %s illisible apres 0x%X ; conservation des blocs deja lus" % [context, start])
+	_stop_reading_early = true
+	br.seek(br.length())
+
+
+## Trace des derniers blocs lus, pour identifier celui dont le lecteur desynchronise.
+func _trace() -> String:
+	var seq := PackedStringArray()
+	var start := maxi(0, blocks.size() - 6)
+	for k in range(start, blocks.size()):
+		seq.append("%d:%s" % [k, str(blocks[k].get("type", "?"))])
+	return "blocs lus juste avant: [%s] (le dernier est le suspect)" % ", ".join(seq)
+
+
+## Un nom de type NIF valide = identifiant ASCII court (lettres/chiffres/_).
+func _looks_like_type(s: String) -> bool:
+	if s.length() < 2 or s.length() > 60:
+		return false
+	# DAoC NetImmerse/Gamebryo : les vrais types rencontres ici sont des types Ni*.
+	# Les faux types courts comme "42", "7u", "w6" sont des symptomes de desync.
+	if not s.begins_with("Ni"):
+		return false
+	for i in range(s.length()):
+		var c := s.unicode_at(i)
+		var ok := (c >= 65 and c <= 90) or (c >= 97 and c <= 122) or (c >= 48 and c <= 57) or c == 95
+		if not ok:
+			return false
+	return true
+
+
+func _next_is_type_header() -> bool:
+	return _looks_like_type(br.peek_sized_ascii())
+
+
+func _resync_to_next_type_header(context: String, max_scan: int = 4096) -> bool:
+	# Pas besoin de resync si on est deja exactement au bon endroit.
+	if _next_is_type_header():
+		return true
+	var start := br.pos()
+	var limit := mini(br.length() - 6, start + max_scan)
+	for p in range(start, limit):
+		br.seek(p)
+		var next_type := br.peek_sized_ascii()
+		if _looks_like_type(next_type):
+			br.seek(p)
+			push_warning("NIF RESYNC: %s saute %d octets vers prochain bloc %s @0x%X" % [context, p - start, next_type, p])
+			return true
+	br.seek(start)
+	return false
+
+
+func _guard(n: int, maxv: int, what: String) -> bool:
+	# Compteur de liste lu du fichier : s'il depasse, c'est une desync -> on
+	# abandonne le fichier (au lieu d'iterer un range() geant et de figer le jeu).
+	if n < 0 or n > maxv:
+		failed = true
+		suspect = _cur_type
+		fail_offset = br.pos()
+		fail_block_start = _cur_block_start
+		fail_reason = "%s aberrant (%d, max %d) en lisant le bloc %d '%s' @ offset 0x%X — desync : corriger le lecteur de '%s'" % [what, n, maxv, _cur_idx, _cur_type, br.pos(), _cur_type]
+		push_error("NIF DESYNC: " + fail_reason)
+		return false
+	return true
+
+
+func _fail(reason: String, offset: int) -> bool:
+	failed = true
+	fail_offset = offset
+	fail_block_start = _cur_block_start if _cur_block_start != 0 else offset
+	fail_reason = "%s @ offset 0x%X (%d)" % [reason, offset, offset]
+	push_error("NIF FAIL: " + fail_reason)
+	if br != null:
+		br.close()
+	return false
