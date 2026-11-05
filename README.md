@@ -33,7 +33,7 @@ Lire ensuite [TUTORIEL_PATCH_CLIENT.md](TUTORIEL_PATCH_CLIENT.md) et
 - comptes, identifiants, configurations locales et chemins de machines ;
 - captures réseau et personnages de test personnels ;
 - journaux, relais d'agents, hypothèses et rapports de recherche ;
-- graphismes HD et assets du projet personnel NAMED ;
+- graphismes HD et assets du projet personnel de test ;
 - caches, exports, captures d'écran et binaires générés ;
 - ressources dont la redistribution n'est pas clairement autorisée.
 
