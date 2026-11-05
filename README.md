@@ -13,11 +13,7 @@ Ces captures techniques illustrent une direction graphique possible. Le rendu
 HD n'est pas imposé : la base publique reste conçue pour fonctionner avec les
 graphismes d'origine et permettre à chacun de choisir sa propre direction.
 
-![Objets DAoC chargés et validés sous Godot](docs/screenshots/hd_props.png)
 
-![Personnage et armure affichés sous Godot](docs/screenshots/hd_character_epic.png)
-
-![Aperçu rapproché de l'équipement](docs/screenshots/hd_equipment.png)
 
 ## Ce que permet la base
 
