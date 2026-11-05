@@ -7,6 +7,18 @@ Le gameplay, les zones, les modèles et les animations restent ceux du client
 que possède l'utilisateur. Le dépôt ne fournit aucun fichier propriétaire de
 DAoC et ne contient aucun élément du projet personnel de l'auteur.
 
+## Aperçu du potentiel HD
+
+Ces captures techniques illustrent une direction graphique possible. Le rendu
+HD n'est pas imposé : la base publique reste conçue pour fonctionner avec les
+graphismes d'origine et permettre à chacun de choisir sa propre direction.
+
+![Objets DAoC chargés et validés sous Godot](docs/screenshots/hd_props.png)
+
+![Personnage et armure affichés sous Godot](docs/screenshots/hd_character_epic.png)
+
+![Aperçu rapproché de l'équipement](docs/screenshots/hd_equipment.png)
+
 ## Ce que permet la base
 
 - conserver le rendu d'origine ou le faire évoluer ;
